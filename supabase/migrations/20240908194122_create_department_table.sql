@@ -1,0 +1,7 @@
+CREATE TABLE Department (
+    id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    department VARCHAR(100) NOT NULL,
+    team VARCHAR(100),
+    worker_role VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
