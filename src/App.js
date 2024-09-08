@@ -38,11 +38,12 @@ const App = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
        {/* Header with Logo and Title */}
-       <header className="text-center mb-8">
+       <header className="text-center mb-4">
         <img src="/logo.jpg" alt="Harvesters International Christian Center Logo" className="w-32 h-32 mx-auto" />
         <h1 className="text-3xl font-bold mt-4">Harvesters International Christian Center</h1>
+        <h3 className="text-2xl font-bold mt-4">Awakening</h3>
       </header>
-      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-lg">
+      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-lg mb-24">
         <h1 className="text-2xl font-bold mb-4">Attendance</h1>
 
         {/* Search Input */}
@@ -62,7 +63,7 @@ const App = () => {
                 <span>{person.firstName} {person.lastName} ({person.phoneNumber})</span>
                 <button
                   onClick={() => handleMarkPresent(person)}
-                  className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+                  className="px-2 py-2 bg-blue-500 text-white rounded-lg"
                 >
                   Mark Present
                 </button>
