@@ -1,24 +1,13 @@
 import { useSearchWorker } from "./services/search";
+import { useDebouncedSearch } from "./hooks/useDebouncedSearch";
 
 const { useState } = require("react");
 
 const Attendance = () => {
+  const { debouncedSearch, search: searchValue } = useDebouncedSearch();
+  const { data: filteredPeople, isLoading } = useSearchWorker(searchValue);
   const [query, setQuery] = useState("");
-  const { data } = useSearchWorker(query);
-  const [people, setPeople] = useState([
-    {
-      firstname: "John",
-      lastname: "Doe",
-      phonenumber: "1234567890",
-      department: "HR",
-    },
-    {
-      firstname: "Jane",
-      lastname: "Smith",
-      phonenumber: "0987654321",
-      department: "IT",
-    },
-  ]);
+  const [people, setPeople] = useState([]);
   const [isCreating, setIsCreating] = useState(false);
   const [newPerson, setNewPerson] = useState({
     firstname: "",
@@ -27,10 +16,9 @@ const Attendance = () => {
     department: "",
   });
 
-  console.log({ data: data?.map((o) => o) });
-
   const handleSearch = (e) => {
     setQuery(e.target.value);
+    debouncedSearch(e.target.value);
   };
 
   const handleCreate = () => {
@@ -51,13 +39,6 @@ const Attendance = () => {
   const handleMarkPresent = (person) => {
     alert(`${person.firstname} ${person.lastname} is present!`);
   };
-
-  const filteredPeople = data?.filter(
-    (person) =>
-      person?.firstname?.toLowerCase().includes(query.toLowerCase()) ||
-      person?.lastname?.toLowerCase().includes(query.toLowerCase()) ||
-      person?.phonenumber?.includes(query)
-  );
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
@@ -86,7 +67,7 @@ const Attendance = () => {
         />
 
         {/* Search Results */}
-        {filteredPeople?.length > 0 ? (
+        {searchValue && filteredPeople?.length > 0 ? (
           <ul className="space-y-2">
             {filteredPeople?.map((person, index) => (
               <li
@@ -107,7 +88,7 @@ const Attendance = () => {
           </ul>
         ) : (
           <div className="text-center my-4">
-            <p>No results found.</p>
+            {isLoading && searchValue ? <p>Searching...</p> : !isLoading && searchValue ? <p>No results</p>: null}
             <button
               onClick={handleCreate}
               className="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg"

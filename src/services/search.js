@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import supabase from "./supabase";
 
 const searchWorkers = async (searchParams) => {
-  // Mock delay for demonstration purposes
   if(!searchParams) return []
   const { data, error } = await supabase.rpc('get_search_results', { search_text: searchParams} );
   if (error) {
