@@ -68,33 +68,49 @@ const Attendance = () => {
 
         {/* Search Results */}
         {searchValue && filteredPeople?.length > 0 ? (
-          <ul className="space-y-2">
-            {filteredPeople?.map((person, index) => (
-              <li
-                key={index}
-                className="p-4 border rounded-lg flex justify-between items-center"
-              >
-                <span>
-                  {person.firstname} {person.lastname} ({person.phonenumber})
-                </span>
-                <button
-                  onClick={() => handleMarkPresent(person)}
-                  className="px-2 py-2 text-sm bg-blue-500 text-white rounded-lg"
+          <div>
+            <ul className="space-y-2">
+              {filteredPeople?.map((person, index) => (
+                <li
+                  key={index}
+                  className="p-4 border rounded-lg flex justify-between items-center"
                 >
-                  Mark Present
-                </button>
-              </li>
-            ))}
-          </ul>
+                  <span>
+                    {person.firstname} {person.lastname} ({person.phonenumber})
+                  </span>
+                  <button
+                    onClick={() => handleMarkPresent(person)}
+                    className="px-2 py-2 text-sm bg-blue-500 text-white rounded-lg"
+                  >
+                    Mark Present
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <div className="items-center text-center">
+              <button
+                onClick={handleCreate}
+                className="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg"
+              >
+                Manually add attendance
+              </button>
+            </div>
+          </div>
         ) : (
           <div className="text-center my-4">
-            {isLoading && searchValue ? <p>Searching...</p> : !isLoading && searchValue ? <p>No results</p>: null}
-            <button
-              onClick={handleCreate}
-              className="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg"
-            >
-              Create
-            </button>
+            {isLoading && searchValue ? (
+              <p>Searching...</p>
+            ) : !isLoading && searchValue ? (
+              <div>
+                <p>No results</p>
+                <button
+                  onClick={handleCreate}
+                  className="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg"
+                >
+                  Manually add attendance
+                </button>
+              </div>
+            ) : null}
           </div>
         )}
 
