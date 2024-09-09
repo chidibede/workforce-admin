@@ -1,7 +1,0 @@
-CREATE TABLE Department (
-    id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    department VARCHAR(100) NOT NULL,
-    team VARCHAR(100),
-    workerRole VARCHAR(100),
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);

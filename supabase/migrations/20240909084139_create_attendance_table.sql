@@ -1,0 +1,8 @@
+CREATE TABLE Attendance (
+    id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    personid INT NOT NULL,
+    program Text NOT NULL,
+    attendedat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ispresent BOOLEAN NOT NULL,
+    FOREIGN KEY (personid) REFERENCES Person(id) ON DELETE CASCADE
+);

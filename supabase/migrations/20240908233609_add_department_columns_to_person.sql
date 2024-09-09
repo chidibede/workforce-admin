@@ -1,5 +1,0 @@
-ALTER TABLE Person ADD department VARCHAR(100);
-
-ALTER TABLE Person ADD team VARCHAR(100);
-
-ALTER TABLE Person ADD workerRole VARCHAR(100);

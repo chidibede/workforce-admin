@@ -1,9 +1,0 @@
-CREATE TABLE Person (
-    id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    identifier VARCHAR(255) NOT NULL,
-    firstName VARCHAR(100) NOT NULL,
-    lastName VARCHAR(100) NOT NULL,
-    phoneNumber VARCHAR(20),
-    extraData VARCHAR(255),
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
