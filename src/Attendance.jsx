@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useAttendance, useManualAttendance } from "./services/attendance";
 import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from 'react-toastify'
 
 const Attendance = () => {
   const { debouncedSearch, search: searchValue } = useDebouncedSearch();
@@ -45,8 +46,8 @@ const Attendance = () => {
     setManuallySaving(true)
     manualAttendanceMutation({...newPerson, fullname: `${newPerson.firstname} ${newPerson.lastname}`}, {
       onSuccess() {
+        toast.success('Attendance manually added successfully')
         queryClient.invalidateQueries();
-        debouncedSearch(newPerson.fullname)
         setNewPerson({
           firstname: "",
           lastname: "",
@@ -78,6 +79,7 @@ const Attendance = () => {
     setMutateIsLoadingId(person.id);
     markAttendanceMutation(person, {
       onSuccess() {
+        toast.success('Attendance marked successfully')
         setMutateIsLoadingId(0);
         queryClient.invalidateQueries();
       },
@@ -138,7 +140,6 @@ const Attendance = () => {
                   </div>
                   {person.ispresent ? (
                     <button
-                      onClick={() => handleMarkPresent(person)}
                       className="px-2 py-2 text-sm bg-green-500 text-white rounded-lg flex justify-between cursor-not-allowed"
                     >
                       <CheckBadgeIcon className="text-white size-5" />

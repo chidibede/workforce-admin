@@ -21,16 +21,19 @@ const markPresent = async (person) => {
 };
 
 const manualAttendance = async (person) => {
-  const { data, error } = await supabase.from("person").insert({ ...person }).select();
+  const { data, error } = await supabase
+    .from("person")
+    .insert({ ...person })
+    .select("*");
   const { error: attendanceError } = await supabase
     .from("attendance")
-    .insert({ ispresent: true, personid: data.id, program: "Awakening" });
+    .insert({ ispresent: true, personid: data[0].id, program: "Awakening" });
 
   if (error || attendanceError) {
     throw new Error(error.message);
   }
 
-  return person;
+  return data;
 };
 
 export const useAttendance = () => {
