@@ -5,6 +5,7 @@ import { useAttendance, useManualAttendance } from "./services/attendance";
 import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from 'react-toastify'
+import { capitalize } from "lodash";
 
 const Attendance = () => {
   const { debouncedSearch, search: searchValue } = useDebouncedSearch();
@@ -91,9 +92,9 @@ const Attendance = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
+    <div className="min-h-screen flex flex-col md:items-center md:justify-center bg-gray-50 p-4">
       {/* Header with Logo and Title */}
-      <header className="text-center mb-4">
+      <header className="text-center mb-4 mt-8">
         <img
           src="/logo.jpg"
           alt="Harvesters International Christian Center Logo"
@@ -104,7 +105,7 @@ const Attendance = () => {
         </h1>
         <h3 className="text-1xl font-bold mt-4">Awakening</h3>
       </header>
-      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-lg mb-24">
+      <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-lg mb-24">
         <h1 className="text-2xl text-center font-bold mb-4">Attendance</h1>
 
         {/* Search Input */}
@@ -203,7 +204,7 @@ const Attendance = () => {
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.firstname}
                 onChange={(e) =>
-                  setNewPerson({ ...newPerson, firstname: e.target.value })
+                  setNewPerson({ ...newPerson, firstname: capitalize(e.target.value) })
                 }
               />
               <input
@@ -212,7 +213,7 @@ const Attendance = () => {
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.lastname}
                 onChange={(e) =>
-                  setNewPerson({ ...newPerson, lastname: e.target.value })
+                  setNewPerson({ ...newPerson, lastname: capitalize(e.target.value) })
                 }
               />
               <input
@@ -230,7 +231,7 @@ const Attendance = () => {
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.department}
                 onChange={(e) =>
-                  setNewPerson({ ...newPerson, department: e.target.value })
+                  setNewPerson({ ...newPerson, department: capitalize(e.target.value) })
                 }
               />
               <input
@@ -239,7 +240,7 @@ const Attendance = () => {
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.team}
                 onChange={(e) =>
-                  setNewPerson({ ...newPerson, team: e.target.value })
+                  setNewPerson({ ...newPerson, team: capitalize(e.target.value) })
                 }
               />
               <button
