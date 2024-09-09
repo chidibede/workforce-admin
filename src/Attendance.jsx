@@ -75,9 +75,18 @@ const Attendance = () => {
                   key={index}
                   className="p-4 border rounded-lg flex justify-between items-center"
                 >
-                  <span>
-                    {person.firstname} {person.lastname} ({person.phonenumber})
-                  </span>
+                  <div className="flex flex-col">
+                    <span>
+                      {person.firstname} {person.lastname}
+                    </span>
+                    {person.department ? (
+                      <span className="opacity-50">
+                        {person?.department} {person?.team && person?.team}
+                      </span>
+                    ) : (
+                      <span>{person.department || person.team}</span>
+                    )}
+                  </div>
                   <button
                     onClick={() => handleMarkPresent(person)}
                     className="px-2 py-2 text-sm bg-blue-500 text-white rounded-lg"

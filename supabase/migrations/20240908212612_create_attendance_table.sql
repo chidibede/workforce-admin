@@ -7,3 +7,23 @@ CREATE TABLE Attendance (
     isPresent BOOLEAN NOT NULL,
     FOREIGN KEY (personId) REFERENCES Person(id) ON DELETE CASCADE
 );
+
+SELECT 
+    p.id,
+    p.firstname,
+    p.lastname,
+    p.phonenumber,
+    p.extradata,
+    d.department,
+    d.team
+FROM 
+    person p
+LEFT JOIN 
+    person_department pd ON p.id = pd.personid
+LEFT JOIN 
+    department d ON pd.departmentid = d.id
+WHERE 
+    p.firstname ILIKE '%' || search_text || '%'
+    OR p.lastname ILIKE '%' || search_text || '%'
+    OR p.phonenumber ILIKE '%' || search_text || '%'
+    OR p.extradata ILIKE '%' || search_text || '%';
