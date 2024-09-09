@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@heroicons/react": "^2.1.5",
     "@supabase/supabase-js": "^2.45.3",
     "@tanstack/react-query": "^5.55.2",
     "@testing-library/jest-dom": "^5.17.0",

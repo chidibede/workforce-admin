@@ -13,3 +13,16 @@ language sql
 as $$
 select id, identifier, firstname, lastname, fullname, department, team from person where firstname ILIKE '%' || search_text || '%' OR lastname ILIKE '%' || search_text || '%' OR phonenumber ILIKE '%' || search_text || '%' OR fullname ILIKE '%' || search_text || '%'
 $$;
+
+
+CREATE TYPE PersonWithDepartment AS (
+    id INT,
+    identifier TEXT,
+    firstname TEXT,
+    lastname TEXT,
+    fullname TEXT,
+    department TEXT,
+    team TEXT,
+    ispresent BOOLEAN,
+    program TEXT
+);

@@ -1,14 +1,19 @@
 import { useSearchWorker } from "./services/search";
 import { useDebouncedSearch } from "./hooks/useDebouncedSearch";
 import { useState } from "react";
-
+import { useAttendance } from "./services/attendance";
+import { CheckBadgeIcon } from "@heroicons/react/16/solid";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Attendance = () => {
   const { debouncedSearch, search: searchValue } = useDebouncedSearch();
   const { data: filteredPeople, isLoading } = useSearchWorker(searchValue);
+  const { mutate: markAttendanceMutation } = useAttendance();
   const [query, setQuery] = useState("");
   const [people, setPeople] = useState([]);
   const [isCreating, setIsCreating] = useState(false);
+  const [mutateIsLoadingId, setMutateIsLoadingId] = useState(0);
+  const queryClient = useQueryClient();
   const [newPerson, setNewPerson] = useState({
     firstname: "",
     lastname: "",
@@ -18,7 +23,11 @@ const Attendance = () => {
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
-    debouncedSearch(e.target.value.startsWith(0) ? e.target.value.replace(0, '') : e.target.value);
+    debouncedSearch(
+      e.target.value.startsWith(0)
+        ? e.target.value.replace(0, "")
+        : e.target.value
+    );
   };
 
   const handleCreate = () => {
@@ -37,8 +46,19 @@ const Attendance = () => {
   };
 
   const handleMarkPresent = (person) => {
-    alert(`${person.firstname} ${person.lastname} is present!`);
+    setMutateIsLoadingId(person.id);
+    markAttendanceMutation(person, {
+      onSuccess() {
+        setMutateIsLoadingId(0);
+        queryClient.invalidateQueries()
+      },
+      onError(error) {
+        setMutateIsLoadingId(0);
+        throw error;
+      },
+    });
   };
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
@@ -81,25 +101,36 @@ const Attendance = () => {
                     </span>
                     {person.team ? (
                       <span className="opacity-50">
-                        {person?.team} - {person?.department && person?.department}
+                        {person?.team} -{" "}
+                        {person?.department && person?.department}
                       </span>
                     ) : (
                       <span>{person.team || person.department}</span>
                     )}
                   </div>
-                  <button
-                    onClick={() => handleMarkPresent(person)}
-                    className="px-2 py-2 text-sm bg-blue-500 text-white rounded-lg"
-                  >
-                    Mark Present
-                  </button>
+                  {person.ispresent ? (
+                    <button onClick={() => handleMarkPresent(person)} className="px-2 py-2 text-sm bg-green-500 text-white rounded-lg flex justify-between cursor-not-allowed">
+                      <CheckBadgeIcon className="text-white size-5" />
+                      <span className="ml-3">Present</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleMarkPresent(person)}
+                      className="px-2 py-2 text-sm bg-blue-500 text-white rounded-lg flex"
+                    >
+                      {mutateIsLoadingId === person.id
+                        ? "Marking..."
+                        : "Mark Present"}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
             <div className="items-center text-center">
+              <div className="mt-6">OR</div>
               <button
                 onClick={handleCreate}
-                className="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg"
+                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
               >
                 Manually add attendance
               </button>
