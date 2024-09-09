@@ -101,7 +101,7 @@ const Attendance = () => {
           className="w-32 h-32 mx-auto"
         />
         <h1 className="text-2xl font-bold mt-4">
-          Harvesters International Christian Center
+          Harvesters International Christian Centre
         </h1>
         <h3 className="text-1xl font-bold mt-4">Awakening</h3>
       </header>
