@@ -20,9 +20,29 @@ const markPresent = async (person) => {
   return person;
 };
 
+const manualAttendance = async (person) => {
+  const { data, error } = await supabase.from("person").insert({ ...person }).select();
+  const { error: attendanceError } = await supabase
+    .from("attendance")
+    .insert({ ispresent: true, personid: data.id, program: "Awakening" });
+
+  if (error || attendanceError) {
+    throw new Error(error.message);
+  }
+
+  return person;
+};
+
 export const useAttendance = () => {
   return useMutation({
     mutationFn: markPresent,
+    cacheTime: 0,
+  });
+};
+
+export const useManualAttendance = () => {
+  return useMutation({
+    mutationFn: manualAttendance,
     cacheTime: 0,
   });
 };

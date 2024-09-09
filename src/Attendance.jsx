@@ -1,7 +1,7 @@
 import { useSearchWorker } from "./services/search";
 import { useDebouncedSearch } from "./hooks/useDebouncedSearch";
 import { useState } from "react";
-import { useAttendance } from "./services/attendance";
+import { useAttendance, useManualAttendance } from "./services/attendance";
 import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -9,16 +9,19 @@ const Attendance = () => {
   const { debouncedSearch, search: searchValue } = useDebouncedSearch();
   const { data: filteredPeople, isLoading } = useSearchWorker(searchValue);
   const { mutate: markAttendanceMutation } = useAttendance();
+  const { mutate: manualAttendanceMutation } = useManualAttendance();
   const [query, setQuery] = useState("");
-  const [people, setPeople] = useState([]);
   const [isCreating, setIsCreating] = useState(false);
   const [mutateIsLoadingId, setMutateIsLoadingId] = useState(0);
+  const [manuallySaving, setManuallySaving] = useState(false);
   const queryClient = useQueryClient();
   const [newPerson, setNewPerson] = useState({
     firstname: "",
     lastname: "",
     phonenumber: "",
     department: "",
+    team: "",
+    fullname: "",
   });
 
   const handleSearch = (e) => {
@@ -34,15 +37,41 @@ const Attendance = () => {
     setIsCreating(true);
   };
 
-  const handleSave = () => {
-    setPeople([...people, newPerson]);
-    setNewPerson({
-      firstname: "",
-      lastname: "",
-      phonenumber: "",
-      department: "",
-    });
+  const resetCreate = () => {
     setIsCreating(false);
+  };
+
+  const handleSave = () => {
+    setManuallySaving(true)
+    manualAttendanceMutation({...newPerson, fullname: `${newPerson.firstname} ${newPerson.lastname}`}, {
+      onSuccess() {
+        queryClient.invalidateQueries();
+        debouncedSearch(newPerson.fullname)
+        setNewPerson({
+          firstname: "",
+          lastname: "",
+          phonenumber: "",
+          department: "",
+          team: "",
+          fullname: "",
+        });
+        setManuallySaving(false)
+        setIsCreating(false);
+      },
+      onError(error) {
+        setNewPerson({
+          firstname: "",
+          lastname: "",
+          phonenumber: "",
+          department: "",
+          team: "",
+          fullname: "",
+        });
+        setManuallySaving(false)
+        setIsCreating(false);
+        throw error;
+      },
+    });
   };
 
   const handleMarkPresent = (person) => {
@@ -50,7 +79,7 @@ const Attendance = () => {
     markAttendanceMutation(person, {
       onSuccess() {
         setMutateIsLoadingId(0);
-        queryClient.invalidateQueries()
+        queryClient.invalidateQueries();
       },
       onError(error) {
         setMutateIsLoadingId(0);
@@ -58,7 +87,6 @@ const Attendance = () => {
       },
     });
   };
-
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
@@ -87,7 +115,7 @@ const Attendance = () => {
         />
 
         {/* Search Results */}
-        {searchValue && filteredPeople?.length > 0 ? (
+        {!isCreating && searchValue && filteredPeople?.length > 0 ? (
           <div>
             <ul className="space-y-2">
               {filteredPeople?.map((person, index) => (
@@ -109,13 +137,16 @@ const Attendance = () => {
                     )}
                   </div>
                   {person.ispresent ? (
-                    <button onClick={() => handleMarkPresent(person)} className="px-2 py-2 text-sm bg-green-500 text-white rounded-lg flex justify-between cursor-not-allowed">
+                    <button
+                      onClick={() => handleMarkPresent(person)}
+                      className="px-2 py-2 text-sm bg-green-500 text-white rounded-lg flex justify-between cursor-not-allowed"
+                    >
                       <CheckBadgeIcon className="text-white size-5" />
                       <span className="ml-3">Present</span>
                     </button>
                   ) : (
                     <button
-                      onClick={() => handleMarkPresent(person)}
+                      onClick={() => mutateIsLoadingId === 0 ? handleMarkPresent(person) : undefined}
                       className="px-2 py-2 text-sm bg-blue-500 text-white rounded-lg flex"
                     >
                       {mutateIsLoadingId === person.id
@@ -137,27 +168,33 @@ const Attendance = () => {
             </div>
           </div>
         ) : (
-          <div className="text-center my-4">
-            {isLoading && searchValue ? (
-              <p>Searching...</p>
-            ) : !isLoading && searchValue ? (
-              <div>
-                <p>No results</p>
-                <button
-                  onClick={handleCreate}
-                  className="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg"
-                >
-                  Manually add attendance
-                </button>
+          <>
+            {!isCreating && (
+              <div className="text-center my-4">
+                {isLoading && searchValue ? (
+                  <p>Searching...</p>
+                ) : !isLoading && searchValue ? (
+                  <div>
+                    <p>No results</p>
+                    <button
+                      onClick={handleCreate}
+                      className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
+                    >
+                      Manually add attendance
+                    </button>
+                  </div>
+                ) : null}
               </div>
-            ) : null}
-          </div>
+            )}
+          </>
         )}
 
         {/* Create Form */}
         {isCreating && (
           <div className="mt-4">
-            <h2 className="text-xl font-bold mb-4">Create New Person</h2>
+            <h2 className="text-xl font-bold mb-4 text-center">
+              Manually add atendance
+            </h2>
             <div className="space-y-4">
               <input
                 type="text"
@@ -188,18 +225,33 @@ const Attendance = () => {
               />
               <input
                 type="text"
-                placeholder="Department"
+                placeholder="Department eg Career and Finance"
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.department}
                 onChange={(e) =>
                   setNewPerson({ ...newPerson, department: e.target.value })
                 }
               />
+              <input
+                type="text"
+                placeholder="Team eg Ministry, Programs"
+                className="w-full p-2 border rounded-lg"
+                value={newPerson.team}
+                onChange={(e) =>
+                  setNewPerson({ ...newPerson, team: e.target.value })
+                }
+              />
               <button
-                onClick={handleSave}
+                onClick={() => !manuallySaving ? handleSave() : undefined}
                 className="w-full py-2 bg-blue-500 text-white rounded-lg"
               >
-                Save
+                {manuallySaving ? "Saving" : "Save"}
+              </button>
+              <button
+                onClick={resetCreate}
+                className="w-full py-2 bg-red-500 text-white rounded-lg"
+              >
+                Cancel
               </button>
             </div>
           </div>
