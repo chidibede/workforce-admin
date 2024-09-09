@@ -1,7 +1,7 @@
 import { useSearchWorker } from "./services/search";
 import { useDebouncedSearch } from "./hooks/useDebouncedSearch";
+import { useState } from "react";
 
-const { useState } = require("react");
 
 const Attendance = () => {
   const { debouncedSearch, search: searchValue } = useDebouncedSearch();
