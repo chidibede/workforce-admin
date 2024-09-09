@@ -18,7 +18,7 @@ const Attendance = () => {
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
-    debouncedSearch(e.target.value);
+    debouncedSearch(e.target.value.startsWith(0) ? e.target.value.replace(0, '') : e.target.value);
   };
 
   const handleCreate = () => {
@@ -79,12 +79,12 @@ const Attendance = () => {
                     <span>
                       {person.firstname} {person.lastname}
                     </span>
-                    {person.department ? (
+                    {person.team ? (
                       <span className="opacity-50">
-                        {person?.department} {person?.team && person?.team}
+                        {person?.team} - {person?.department && person?.department}
                       </span>
                     ) : (
-                      <span>{person.department || person.team}</span>
+                      <span>{person.team || person.department}</span>
                     )}
                   </div>
                   <button
