@@ -45,7 +45,7 @@ const Attendance = () => {
 
   const handleSave = () => {
     setManuallySaving(true)
-    manualAttendanceMutation({...newPerson, fullname: `${newPerson.firstname} ${newPerson.lastname}`}, {
+    manualAttendanceMutation({...newPerson, fullname: `${newPerson.firstname.trim()} ${newPerson.lastname.trim()}`.trim()}, {
       onSuccess() {
         toast.success('Attendance manually added successfully')
         queryClient.invalidateQueries();
@@ -204,7 +204,7 @@ const Attendance = () => {
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.firstname}
                 onChange={(e) =>
-                  setNewPerson({ ...newPerson, firstname: capitalize(e.target.value) })
+                  setNewPerson({ ...newPerson, firstname: capitalize(e.target.value).trim() })
                 }
               />
               <input
@@ -213,7 +213,7 @@ const Attendance = () => {
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.lastname}
                 onChange={(e) =>
-                  setNewPerson({ ...newPerson, lastname: capitalize(e.target.value) })
+                  setNewPerson({ ...newPerson, lastname: capitalize(e.target.value).trim() })
                 }
               />
               <input
@@ -231,7 +231,7 @@ const Attendance = () => {
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.department}
                 onChange={(e) =>
-                  setNewPerson({ ...newPerson, department: capitalize(e.target.value) })
+                  setNewPerson({ ...newPerson, department: capitalize(e.target.value).trim() })
                 }
               />
               <input
@@ -240,7 +240,7 @@ const Attendance = () => {
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.team}
                 onChange={(e) =>
-                  setNewPerson({ ...newPerson, team: capitalize(e.target.value) })
+                  setNewPerson({ ...newPerson, team: capitalize(e.target.value).trim() })
                 }
               />
               <button
