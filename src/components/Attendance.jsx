@@ -173,7 +173,7 @@ const Attendance = () => {
                           ? handleMarkPresent(person)
                           : undefined
                       }
-                      className="px-2 py-2 text-sm bg-blue-500 text-white rounded-lg flex"
+                      className="px-2 py-2 text-xs bg-blue-500 text-white rounded-lg flex"
                     >
                       {mutateIsLoadingId === person.id
                         ? "Marking..."
