@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useAttendance, useManualAttendance } from "./services/attendance";
 import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 import { useQueryClient } from "@tanstack/react-query";
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
 import { capitalize } from "lodash";
+import { getAwakeningDay } from "./utils/getAwakeningDay";
 
 const Attendance = () => {
   const { debouncedSearch, search: searchValue } = useDebouncedSearch();
@@ -26,6 +27,21 @@ const Attendance = () => {
     fullname: "",
   });
 
+ 
+
+  const getAwakeningDayAttendance = (person) => {
+    const awakeningMap = {
+      Wednesday: "ispresentawakeningone",
+      Thursday: "ispresentawakeningtwo",
+      Friday: "ispresentawakeningthree",
+    };
+    const day = getAwakeningDay();
+    const ispresentday =
+      person[awakeningMap[day]] || person[awakeningMap["Wednesday"]];
+
+    return ispresentday;
+  };
+
   const handleSearch = (e) => {
     setQuery(e.target.value);
     debouncedSearch(
@@ -44,43 +60,50 @@ const Attendance = () => {
   };
 
   const handleSave = () => {
-    setManuallySaving(true)
-    manualAttendanceMutation({...newPerson, fullname: `${newPerson.firstname.trim()} ${newPerson.lastname.trim()}`.trim()}, {
-      onSuccess() {
-        toast.success('Attendance manually added successfully')
-        queryClient.invalidateQueries();
-        setNewPerson({
-          firstname: "",
-          lastname: "",
-          phonenumber: "",
-          department: "",
-          team: "",
-          fullname: "",
-        });
-        setManuallySaving(false)
-        setIsCreating(false);
+    setManuallySaving(true);
+    manualAttendanceMutation(
+      {
+        ...newPerson,
+        fullname:
+          `${newPerson.firstname.trim()} ${newPerson.lastname.trim()}`.trim(),
       },
-      onError(error) {
-        setNewPerson({
-          firstname: "",
-          lastname: "",
-          phonenumber: "",
-          department: "",
-          team: "",
-          fullname: "",
-        });
-        setManuallySaving(false)
-        setIsCreating(false);
-        throw error;
-      },
-    });
+      {
+        onSuccess() {
+          toast.success("Attendance manually added successfully");
+          queryClient.invalidateQueries();
+          setNewPerson({
+            firstname: "",
+            lastname: "",
+            phonenumber: "",
+            department: "",
+            team: "",
+            fullname: "",
+          });
+          setManuallySaving(false);
+          setIsCreating(false);
+        },
+        onError(error) {
+          setNewPerson({
+            firstname: "",
+            lastname: "",
+            phonenumber: "",
+            department: "",
+            team: "",
+            fullname: "",
+          });
+          setManuallySaving(false);
+          setIsCreating(false);
+          throw error;
+        },
+      }
+    );
   };
 
   const handleMarkPresent = (person) => {
     setMutateIsLoadingId(person.id);
     markAttendanceMutation(person, {
       onSuccess() {
-        toast.success('Attendance marked successfully')
+        toast.success("Attendance marked successfully");
         setMutateIsLoadingId(0);
         queryClient.invalidateQueries();
       },
@@ -139,16 +162,18 @@ const Attendance = () => {
                       <span>{person.team || person.department}</span>
                     )}
                   </div>
-                  {person.ispresent ? (
-                    <button
-                      className="px-2 py-2 text-sm bg-green-500 text-white rounded-lg flex justify-between cursor-not-allowed"
-                    >
+                  {getAwakeningDayAttendance(person) ? (
+                    <button className="px-2 py-2 text-sm bg-green-500 text-white rounded-lg flex justify-between cursor-not-allowed">
                       <CheckBadgeIcon className="text-white size-5" />
                       <span className="ml-3">Present</span>
                     </button>
                   ) : (
                     <button
-                      onClick={() => mutateIsLoadingId === 0 ? handleMarkPresent(person) : undefined}
+                      onClick={() =>
+                        mutateIsLoadingId === 0
+                          ? handleMarkPresent(person)
+                          : undefined
+                      }
                       className="px-2 py-2 text-sm bg-blue-500 text-white rounded-lg flex"
                     >
                       {mutateIsLoadingId === person.id
@@ -204,7 +229,10 @@ const Attendance = () => {
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.firstname}
                 onChange={(e) =>
-                  setNewPerson({ ...newPerson, firstname: capitalize(e.target.value).trim() })
+                  setNewPerson({
+                    ...newPerson,
+                    firstname: capitalize(e.target.value).trim(),
+                  })
                 }
               />
               <input
@@ -213,7 +241,10 @@ const Attendance = () => {
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.lastname}
                 onChange={(e) =>
-                  setNewPerson({ ...newPerson, lastname: capitalize(e.target.value).trim() })
+                  setNewPerson({
+                    ...newPerson,
+                    lastname: capitalize(e.target.value).trim(),
+                  })
                 }
               />
               <input
@@ -231,7 +262,10 @@ const Attendance = () => {
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.department}
                 onChange={(e) =>
-                  setNewPerson({ ...newPerson, department: capitalize(e.target.value).trim() })
+                  setNewPerson({
+                    ...newPerson,
+                    department: capitalize(e.target.value).trim(),
+                  })
                 }
               />
               <input
@@ -240,11 +274,14 @@ const Attendance = () => {
                 className="w-full p-2 border rounded-lg"
                 value={newPerson.team}
                 onChange={(e) =>
-                  setNewPerson({ ...newPerson, team: capitalize(e.target.value).trim() })
+                  setNewPerson({
+                    ...newPerson,
+                    team: capitalize(e.target.value).trim(),
+                  })
                 }
               />
               <button
-                onClick={() => !manuallySaving ? handleSave() : undefined}
+                onClick={() => (!manuallySaving ? handleSave() : undefined)}
                 className="w-full py-2 bg-blue-500 text-white rounded-lg"
               >
                 {manuallySaving ? "Saving" : "Save"}

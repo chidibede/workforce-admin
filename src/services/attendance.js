@@ -1,23 +1,35 @@
 import { useMutation } from "@tanstack/react-query";
 import supabase from "./supabase";
+import { getAwakeningDay } from "../utils/getAwakeningDay";
+
+const awakeningMap = {
+  Wednesday: "ispresentawakeningone",
+  Thursday: "ispresentawakeningtwo",
+  Friday: "ispresentawakeningthree",
+};
 
 const markPresent = async (person) => {
+  const day = getAwakeningDay();
+  const isPresentKey = awakeningMap[day] || "ispresentawakeningone";
   const { data: worker } = await supabase
-    .from("attendance")
+    .from("person")
     .select("*")
-    .eq("personid", person.id)
-    .eq("program", "Awakening");
+    .eq("id", person.id);
 
-  if (worker.length > 0) return worker;
-  const { error } = await supabase
-    .from("attendance")
-    .insert({ ispresent: true, personid: person.id, program: "Awakening" });
+  const workerAttendance = worker[0][isPresentKey];
+
+  if (workerAttendance) return worker[0];
+
+  const { data, error } = await supabase
+    .from("person")
+    .update({ [isPresentKey]: true })
+    .eq("id", person.id);
 
   if (error) {
     throw new Error(error.message);
   }
 
-  return person;
+  return data;
 };
 
 const manualAttendance = async (person) => {

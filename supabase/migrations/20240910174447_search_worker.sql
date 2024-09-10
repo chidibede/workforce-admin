@@ -1,5 +1,5 @@
 
-CREATE TYPE PersonWithDepartmentAndAttendanceV3 AS (
+CREATE TYPE PersonWithAttendance AS (
     id INT,
     identifier TEXT,
     firstname TEXT,
@@ -7,12 +7,13 @@ CREATE TYPE PersonWithDepartmentAndAttendanceV3 AS (
     fullname TEXT,
     department TEXT,
     team TEXT,
-    ispresent BOOLEAN,
-    program TEXT
+    ispresentawakeningone BOOLEAN,
+    ispresentawakeningtwo BOOLEAN,
+    ispresentawakeningthree BOOLEAN
 );
 
-CREATE OR REPLACE FUNCTION get_search_results_v3(search_text TEXT)
-RETURNS SETOF PersonWithDepartmentAndAttendanceV3
+CREATE OR REPLACE FUNCTION get_search_results(search_text TEXT)
+RETURNS SETOF PersonWithAttendance
 LANGUAGE sql
 AS $$
     SELECT 
@@ -23,16 +24,14 @@ AS $$
         p.fullname, 
         p.department, 
         p.team,
-        a.ispresent,
-        a.program
+        p.ispresentawakeningone,
+        p.ispresentawakeningtwo,
+        p.ispresentawakeningthree
     FROM 
         person p
-    LEFT JOIN 
-        attendance a ON p.id = a.personid
     WHERE 
-        (p.firstname ILIKE '%' || search_text || '%'
+        p.firstname ILIKE '%' || search_text || '%'
         OR p.lastname ILIKE '%' || search_text || '%'
         OR p.phonenumber ILIKE '%' || search_text || '%'
-        OR p.fullname ILIKE '%' || search_text || '%')
-        AND a.program = 'Awakening'
+        OR p.fullname ILIKE '%' || search_text || '%'
 $$;

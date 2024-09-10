@@ -8,5 +8,8 @@ CREATE TABLE Person (
     fullname Text,
     department Text,
     team Text,
+    ispresentawakeningone BOOLEAN,
+    ispresentawakeningtwo BOOLEAN,
+    ispresentawakeningthree BOOLEAN,
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
