@@ -3,8 +3,6 @@ import supabase from "./supabase";
 import { getAwakeningDay } from "../utils/getAwakeningDay";
 import { awakeningMap } from "../utils/awakeningMap";
 
-
-
 const markPresent = async (person) => {
   const day = getAwakeningDay();
   const isPresentKey = awakeningMap[day] || "ispresentawakeningone";
@@ -17,9 +15,12 @@ const markPresent = async (person) => {
 
   if (workerAttendance) return worker[0];
 
+  const dateUTC = new Date();
+  const dateISO = dateUTC.toISOString();
+
   const { data, error } = await supabase
     .from("person")
-    .update({ [isPresentKey]: true })
+    .update({ [isPresentKey]: true, updatedat: dateISO })
     .eq("id", person.id);
 
   if (error) {

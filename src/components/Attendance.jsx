@@ -155,6 +155,9 @@ const Attendance = () => {
                     <span>
                       {person.firstname} {person.lastname}
                     </span>
+                    {person.workerrole && <span className="opacity-60">
+                      {person.workerrole}
+                    </span>}
                     {person.team ? (
                       <span className="opacity-50">
                         {person?.team} -{" "}
