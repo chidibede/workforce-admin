@@ -125,6 +125,9 @@ const Attendance = () => {
         <h1 className="text-2xl font-bold mt-4">
           Harvesters International Christian Centre
         </h1>
+        <h2 className="text-[20px] font-bold mt-4">
+          Gbagada campus
+        </h2>
         <h3 className="text-1xl font-bold mt-4">Awakening Day 1</h3>
       </header>
       <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-lg mb-24">
