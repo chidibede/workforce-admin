@@ -271,6 +271,12 @@ const Attendance = () => {
                 label="Select team"
                 options={teams}
                 className="w-full"
+                onChange={(value) =>
+                  setNewPerson({
+                    ...newPerson,
+                    team: capitalize(value).trim(),
+                  })
+                }
               />
               <input
                 type="text"
