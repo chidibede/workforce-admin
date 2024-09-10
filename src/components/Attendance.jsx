@@ -233,7 +233,7 @@ const Attendance = () => {
                 onChange={(e) =>
                   setNewPerson({
                     ...newPerson,
-                    firstname: capitalize(e.target.value).trim(),
+                    firstname: capitalize(e.target.value),
                   })
                 }
               />
@@ -245,7 +245,7 @@ const Attendance = () => {
                 onChange={(e) =>
                   setNewPerson({
                     ...newPerson,
-                    lastname: capitalize(e.target.value).trim(),
+                    lastname: capitalize(e.target.value),
                   })
                 }
               />
@@ -264,7 +264,7 @@ const Attendance = () => {
                 onChange={(value) =>
                   setNewPerson({
                     ...newPerson,
-                    team: capitalize(value).trim(),
+                    team: capitalize(value),
                   })
                 }
               />
@@ -276,7 +276,7 @@ const Attendance = () => {
                 onChange={(e) =>
                   setNewPerson({
                     ...newPerson,
-                    department: capitalize(e.target.value).trim(),
+                    department: capitalize(e.target.value),
                   })
                 }
               />

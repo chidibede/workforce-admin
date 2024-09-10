@@ -34,4 +34,11 @@ export const teams = [
     label: "Interactive Groups (Singles, WOW, Etc)",
     value: "Interactive Groups",
   },
+  {
+    label: "Pastoral Leaders",
+    value: "Pastoral Leaders",
+  },
+  { label: "Directional Leaders", value: "Directional Leaders"}
 ];
+
+
