@@ -1,37 +1,37 @@
 export const teams = [
   {
     label:
-      "Maturity (Prayer, Content Dev & Distributn, Midweek, Campaign & Special Events, Courses Etc)",
+      "Maturity (Prayer, Midweek)",
     value: "Maturity",
   },
   {
-    label: "General Service (Finance, DMU, Admin & Facility, Technology)",
+    label: "General Service (Finance, Facility, Etc)",
     value: "General Service",
   },
   {
     label:
-      "Ministry (Leadership & Dev., Recruitment & Assimilation, Workforce Admin, Special Ministries Etc)",
+      "Ministry (Leadership & Dev, Workforce Etc)",
     value: "Ministry",
   },
   {
     label:
-      "Membership (Guest Welcome, Growth Track, Celebrations, Information Desk, Benevolence, Wedding Etc)",
+      "Membership (Growth Track, Etc)",
     value: "Membership",
   },
   {
     label:
-      "Programs (Choir, Ushers, Greeters, Traffic, Protocol, QA, Programs, Venue Etc)",
+      "Programs (Choir, Ushers, Etc)",
     value: "Program",
   },
   { label: "Next Gen (Kidzone & Stir House)", value: "Next Gen" },
   {
     label:
-      "Mission (NLP, HSAP, Evangelism, God's Encounter, Invest & Invite Etc)",
+      "Mission (NLP, HSAP, Evangelism, Etc)",
     value: "Mission",
   },
   { label: "District/Community", value: "Distric" },
   {
-    label: "Interactive Groups (Singles, Women of Wisdom, Men of Harvest)",
+    label: "Interactive Groups (Singles, WOW, Etc)",
     value: "Interactive Groups",
   },
 ];

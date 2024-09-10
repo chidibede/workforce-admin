@@ -255,22 +255,9 @@ const Attendance = () => {
                   setNewPerson({ ...newPerson, phonenumber: e.target.value })
                 }
               />
-              {/* <input
-                type="text"
-                placeholder="Team eg Ministry, Programs"
-                className="w-full p-2 border rounded-lg"
-                value={newPerson.team}
-                onChange={(e) =>
-                  setNewPerson({
-                    ...newPerson,
-                    team: capitalize(e.target.value).trim(),
-                  })
-                }
-              /> */}
               <Select
                 label="Select team"
                 options={teams}
-                className="w-full"
                 onChange={(value) =>
                   setNewPerson({
                     ...newPerson,

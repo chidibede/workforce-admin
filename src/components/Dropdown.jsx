@@ -40,7 +40,11 @@ const Select = forwardRef(
           {...rest}
         >
           {options.map((option) => (
-            <option className="max-w-2" key={option.value} value={option.value}>
+            <option
+              className="whitespace-break-spaces text-wrap w-16 truncate"
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </option>
           ))}
