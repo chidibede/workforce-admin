@@ -1,12 +1,15 @@
-import { useSearchWorker } from "./services/search";
-import { useDebouncedSearch } from "./hooks/useDebouncedSearch";
+import { useSearchWorker } from "../services/search";
+import { useDebouncedSearch } from "../hooks/useDebouncedSearch";
 import { useState } from "react";
-import { useAttendance, useManualAttendance } from "./services/attendance";
+import { useAttendance, useManualAttendance } from "../services/attendance";
 import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { capitalize } from "lodash";
-import { getAwakeningDay } from "./utils/getAwakeningDay";
+import { getAwakeningDay } from "../utils/getAwakeningDay";
+import { awakeningMap } from "../utils/awakeningMap";
+import { teams } from "../utils/teams";
+import Select from "./Dropdown";
 
 const Attendance = () => {
   const { debouncedSearch, search: searchValue } = useDebouncedSearch();
@@ -27,14 +30,7 @@ const Attendance = () => {
     fullname: "",
   });
 
- 
-
   const getAwakeningDayAttendance = (person) => {
-    const awakeningMap = {
-      Wednesday: "ispresentawakeningone",
-      Thursday: "ispresentawakeningtwo",
-      Friday: "ispresentawakeningthree",
-    };
     const day = getAwakeningDay();
     const ispresentday =
       person[awakeningMap[day]] || person[awakeningMap["Wednesday"]];
@@ -60,12 +56,15 @@ const Attendance = () => {
   };
 
   const handleSave = () => {
+    const day = getAwakeningDay();
+    const isPresentKey = awakeningMap[day] || "ispresentawakeningone";
     setManuallySaving(true);
     manualAttendanceMutation(
       {
         ...newPerson,
         fullname:
           `${newPerson.firstname.trim()} ${newPerson.lastname.trim()}`.trim(),
+        [isPresentKey]: true,
       },
       {
         onSuccess() {
@@ -256,6 +255,23 @@ const Attendance = () => {
                   setNewPerson({ ...newPerson, phonenumber: e.target.value })
                 }
               />
+              {/* <input
+                type="text"
+                placeholder="Team eg Ministry, Programs"
+                className="w-full p-2 border rounded-lg"
+                value={newPerson.team}
+                onChange={(e) =>
+                  setNewPerson({
+                    ...newPerson,
+                    team: capitalize(e.target.value).trim(),
+                  })
+                }
+              /> */}
+              <Select
+                label="Select team"
+                options={teams}
+                className="w-full"
+              />
               <input
                 type="text"
                 placeholder="Department eg Career and Finance"
@@ -265,18 +281,6 @@ const Attendance = () => {
                   setNewPerson({
                     ...newPerson,
                     department: capitalize(e.target.value).trim(),
-                  })
-                }
-              />
-              <input
-                type="text"
-                placeholder="Team eg Ministry, Programs"
-                className="w-full p-2 border rounded-lg"
-                value={newPerson.team}
-                onChange={(e) =>
-                  setNewPerson({
-                    ...newPerson,
-                    team: capitalize(e.target.value).trim(),
                   })
                 }
               />

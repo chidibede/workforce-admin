@@ -1,12 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import supabase from "./supabase";
 import { getAwakeningDay } from "../utils/getAwakeningDay";
+import { awakeningMap } from "../utils/awakeningMap";
 
-const awakeningMap = {
-  Wednesday: "ispresentawakeningone",
-  Thursday: "ispresentawakeningtwo",
-  Friday: "ispresentawakeningthree",
-};
+
 
 const markPresent = async (person) => {
   const day = getAwakeningDay();
@@ -37,11 +34,8 @@ const manualAttendance = async (person) => {
     .from("person")
     .insert({ ...person })
     .select("*");
-  const { error: attendanceError } = await supabase
-    .from("attendance")
-    .insert({ ispresent: true, personid: data[0].id, program: "Awakening" });
 
-  if (error || attendanceError) {
+  if (error) {
     throw new Error(error.message);
   }
 
