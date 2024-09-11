@@ -1,16 +1,16 @@
-const fs = require('fs');
-const path = require('path');
-const csv = require('csv-parser');
-const { createClient } = require('@supabase/supabase-js');
+const fs = require("fs");
+const path = require("path");
+const csv = require("csv-parser");
+const { createClient } = require("@supabase/supabase-js");
 
 // Initialize Supabase client
 
-const supabaseUrl = 'https://uflewbfnxcphwoabrnae.supabase.co'
+const supabaseUrl = "https://uflewbfnxcphwoabrnae.supabase.co";
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY
-const supabase = createClient(supabaseUrl, supabaseKey)
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Directory containing your CSV files
-const csvDirectory = 'leaders_csv';
+const csvDirectory = "leaders_csv";
 
 // Function to read a CSV file and return the data
 const readCsvFile = (filePath) => {
@@ -18,40 +18,97 @@ const readCsvFile = (filePath) => {
     const results = [];
     fs.createReadStream(filePath)
       .pipe(csv())
-      .on('data', (data) => results.push(data))
-      .on('end', () => resolve(results))
-      .on('error', (err) => reject(err));
+      .on("data", (data) => results.push(data))
+      .on("end", () => resolve(results))
+      .on("error", (err) => reject(err));
   });
 };
 
 // Function to update records in Supabase if firstname and lastname match
 const bulkUpdate = async (data) => {
   for (let record of data) {
-    const { firstname, lastname } = record;
-    
+    const {
+      firstname,
+      lastname,
+      team,
+      fullname,
+      workerrole,
+      department,
+      phonenumber,
+    } = record;
+
     // Check if the person exists in the Supabase table
     const { data: existingRecords, error } = await supabase
-      .from('person') // Replace with your table name
-      .select('*')
-      .eq('firstname', firstname)
-      .eq('lastname', lastname);
+      .from("person") // Replace with your table name
+      .select("*")
+      .ilike("fullname", `%${fullname}%`);
 
     if (error) {
-      console.error('Error fetching records:', error);
+      console.error("Error fetching records:", error);
       continue;
     }
 
     if (existingRecords.length > 0) {
+      const finalRecord = existingRecords.find(
+        (item) => item.team.toLowerCase().trim() === team.toLowerCase().trim()
+      );
       // Perform bulk update with matching firstname and lastname
       const { error: updateError } = await supabase
-        .from('person') // Replace with your table name
-        .update({ workerrole: record.workerrole, team: record.team, department: record.department }) // Update fields with new data
-        .match({ firstname, lastname });
+        .from("person") // Replace with your table name
+        .update({
+          workerrole: record.workerrole,
+          team: record.team,
+          department: record.department,
+        }) // Update fields with new data
+        .eq("id", finalRecord?.id || existingRecords[0].id);
 
       if (updateError) {
-        console.error(`Error updating record for ${firstname} ${lastname}:`, updateError);
+        console.error(
+          `Error updating record for ${firstname} ${lastname}:`,
+          updateError
+        );
       } else {
         console.log(`Successfully updated record for ${firstname} ${lastname}`);
+      }
+    } else {
+      const { data: existingRecords, error } = await supabase
+        .from("person") // Replace with your table name
+        .select("*")
+        .eq("phonenumber", phonenumber);
+      if (existingRecords.length > 0) {
+        const finalRecord = existingRecords.find(
+          (item) => item.team.toLowerCase().trim() === team.toLowerCase().trim()
+        );
+        // Perform bulk update with matching firstname and lastname
+        const { error: updateError } = await supabase
+          .from("person") // Replace with your table name
+          .update({
+            workerrole: record.workerrole,
+            team: record.team,
+            department: record.department,
+          }) // Update fields with new data
+          .eq("id", finalRecord?.id || existingRecords[0].id);
+
+        if (updateError) {
+          console.error(
+            `Error updating record for ${firstname} ${lastname}:`,
+            updateError
+          );
+        } else {
+          console.log(
+            `Successfully updated record for ${firstname} ${lastname}`
+          );
+        }
+      } else {
+        await supabase.from("empty").insert({
+          name: fullname,
+          team,
+          workerrole,
+          department,
+          firstname,
+          lastname,
+          phonenumber,
+        });
       }
     }
   }
@@ -71,9 +128,9 @@ const processCsvFiles = async () => {
       // Update the Supabase table with the data
       await bulkUpdate(data);
     }
-    console.log('CSV processing complete.');
+    console.log("CSV processing complete.");
   } catch (error) {
-    console.error('Error processing CSV files:', error);
+    console.error("Error processing CSV files:", error);
   }
 };
 
