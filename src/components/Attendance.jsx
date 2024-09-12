@@ -33,7 +33,7 @@ const Attendance = () => {
   const getAwakeningDayAttendance = (person) => {
     const day = getAwakeningDay();
     const ispresentday =
-      person[awakeningMap[day]] || person[awakeningMap["Wednesday"]];
+      person[awakeningMap[day]] || person[awakeningMap["Thursday"]];
 
     return ispresentday;
   };
@@ -57,7 +57,7 @@ const Attendance = () => {
 
   const handleSave = () => {
     const day = getAwakeningDay();
-    const isPresentKey = awakeningMap[day] || "ispresentawakeningone";
+    const isPresentKey = awakeningMap[day] || "ispresentawakeningtwo";
     setManuallySaving(true);
     manualAttendanceMutation(
       {

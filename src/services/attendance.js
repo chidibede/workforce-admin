@@ -1,11 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import supabase from "./supabase";
-import { getAwakeningDay } from "../utils/getAwakeningDay";
-import { awakeningMap } from "../utils/awakeningMap";
+// import { getAwakeningDay } from "../utils/getAwakeningDay";
+// import { awakeningMap } from "../utils/awakeningMap";
 
 const markPresent = async (person) => {
-  const day = getAwakeningDay();
-  const isPresentKey = awakeningMap[day] || "ispresentawakeningone";
+  // const day = getAwakeningDay();
+  const isPresentKey =  "ispresentawakeningtwo";
   const { data: worker } = await supabase
     .from("person")
     .select("*")
