@@ -5,7 +5,7 @@ import supabase from "./supabase";
 
 const markPresent = async (person) => {
   // const day = getAwakeningDay();
-  const isPresentKey =  "ispresentawakeningtwo";
+  const isPresentKey =  "ispresentawakeningthree";
   const { data: worker } = await supabase
     .from("person")
     .select("*")
