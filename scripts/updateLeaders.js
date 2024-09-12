@@ -50,26 +50,35 @@ const bulkUpdate = async (data) => {
 
     if (existingRecords.length > 0) {
       const finalRecord = existingRecords.find(
-        (item) => item.team.toLowerCase().trim() === team.toLowerCase().trim()
+        (item) =>
+          item?.department?.toLowerCase().trim() ===
+          department?.toLowerCase().trim()
+      );
+      const finalRecord2 = existingRecords.find(
+        (item) =>
+          item?.team?.toLowerCase().trim() ===
+          team?.toLowerCase().trim()
       );
       // Perform bulk update with matching firstname and lastname
-      const { error: updateError } = await supabase
-        .from("person") // Replace with your table name
-        .update({
-          workerrole: record.workerrole,
-          team: record.team,
-          department: record.department,
-        }) // Update fields with new data
-        .eq("id", finalRecord?.id || existingRecords[0].id);
-
-      if (updateError) {
-        console.error(
-          `Error updating record for ${firstname} ${lastname}:`,
-          updateError
-        );
-      } else {
-        console.log(`Successfully updated record for ${firstname} ${lastname}`);
+      if (finalRecord?.id) {
+        const { error: updateError } = await supabase
+          .from("person") // Replace with your table name
+          .update({
+            workerrole: record.workerrole,
+            team: record?.team || finalRecord?.team,
+            department: record?.department || finalRecord?.department || existingRecords[0].id,
+          }) // Update fields with new data
+          .eq("id", finalRecord?.id || finalRecord2.id);
+          if (updateError) {
+            console.error(
+              `Error updating record for ${firstname} ${lastname}:`,
+              updateError
+            );
+          } else {
+            console.log(`Successfully updated record for ${firstname} ${lastname}`);
+          }
       }
+
     } else {
       const { data: existingRecords, error } = await supabase
         .from("person") // Replace with your table name
@@ -77,15 +86,17 @@ const bulkUpdate = async (data) => {
         .eq("phonenumber", phonenumber);
       if (existingRecords.length > 0) {
         const finalRecord = existingRecords.find(
-          (item) => item.team.toLowerCase().trim() === team.toLowerCase().trim()
+          (item) =>
+            item?.department?.toLowerCase().trim() ===
+            department?.toLowerCase().trim()
         );
         // Perform bulk update with matching firstname and lastname
         const { error: updateError } = await supabase
           .from("person") // Replace with your table name
           .update({
             workerrole: record.workerrole,
-            team: record.team,
-            department: record.department,
+            team: record?.team || finalRecord?.team,
+            department: record?.department || finalRecord?.department,
           }) // Update fields with new data
           .eq("id", finalRecord?.id || existingRecords[0].id);
 
