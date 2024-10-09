@@ -6,8 +6,6 @@ import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { capitalize } from "lodash";
-import { getAwakeningDay } from "../utils/getAwakeningDay";
-import { awakeningMap } from "../utils/awakeningMap";
 import { teams } from "../utils/teams";
 import Select from "./Dropdown";
 
@@ -30,14 +28,6 @@ const Attendance = () => {
     fullname: "",
   });
 
-  const getAwakeningDayAttendance = (person) => {
-    const day = getAwakeningDay();
-    const ispresentday =
-      person[awakeningMap[day]] || person[awakeningMap["Friday"]];
-
-    return ispresentday;
-  };
-
   const handleSearch = (e) => {
     setQuery(e.target.value);
     debouncedSearch(
@@ -56,8 +46,7 @@ const Attendance = () => {
   };
 
   const handleSave = () => {
-    const day = getAwakeningDay();
-    const isPresentKey = awakeningMap[day] || "ispresentawakeningthree";
+    const isPresentKey = 'ispresent';
     setManuallySaving(true);
     manualAttendanceMutation(
       {
@@ -167,7 +156,7 @@ const Attendance = () => {
                       <span>{person.team || person.department}</span>
                     )}
                   </div>
-                  {getAwakeningDayAttendance(person) ? (
+                  {person.ispresent ? (
                     <button className="px-2 py-2 text-sm bg-green-500 text-white rounded-lg flex justify-between cursor-not-allowed">
                       <CheckBadgeIcon className="text-white size-5" />
                       <span className="ml-3">Present</span>
