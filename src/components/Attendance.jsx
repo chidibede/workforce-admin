@@ -128,7 +128,7 @@ const Attendance = () => {
         <h2 className="text-[20px] font-bold mt-4">
           Gbagada campus
         </h2>
-        <h3 className="text-1xl font-bold mt-4">Awakening Day 3</h3>
+        <h3 className="text-1xl font-bold mt-4">Workers meeting</h3>
       </header>
       <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-lg mb-24">
         <h1 className="text-2xl text-center font-bold mb-4">Attendance</h1>
