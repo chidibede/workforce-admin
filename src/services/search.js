@@ -2,8 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import supabase from "./supabase";
 
 const searchWorkers = async (searchParams) => {
+  console.log({ searchParams });
   if (!searchParams) return [];
-  const { data, error } = await supabase.rpc("get_search_results_v2", {
+  const { data, error } = await supabase.rpc("get_search_results_v4", {
     search_text: searchParams.trim(),
   });
   if (error) {
