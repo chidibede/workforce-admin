@@ -1,5 +1,5 @@
 
-CREATE TYPE PersonWithAttendance AS (
+CREATE TYPE LeaderType AS (
     id INT,
     identifier TEXT,
     firstname TEXT,
@@ -7,13 +7,13 @@ CREATE TYPE PersonWithAttendance AS (
     fullname TEXT,
     department TEXT,
     team TEXT,
-    ispresentawakeningone BOOLEAN,
-    ispresentawakeningtwo BOOLEAN,
-    ispresentawakeningthree BOOLEAN
+    workerrole TEXT,
+    updatedat TIMESTAMP,
+    ispresent BOOLEAN
 );
 
 CREATE OR REPLACE FUNCTION get_search_results(search_text TEXT)
-RETURNS SETOF PersonWithAttendance
+RETURNS SETOF LeaderType
 LANGUAGE sql
 AS $$
     SELECT 
@@ -24,9 +24,10 @@ AS $$
         p.fullname, 
         p.department, 
         p.team,
-        p.ispresentawakeningone,
-        p.ispresentawakeningtwo,
-        p.ispresentawakeningthree
+        p.workerrole,
+        p.updatedat,
+        p.fullnamereverse,
+        p.ispresent
     FROM 
         person p
     WHERE 
@@ -34,4 +35,7 @@ AS $$
         OR p.lastname ILIKE '%' || search_text || '%'
         OR p.phonenumber ILIKE '%' || search_text || '%'
         OR p.fullname ILIKE '%' || search_text || '%'
+        OR p.fullnamereverse ILIKE '%' || search_text || '%'
+        OR p.team ILIKE '%' || search_text || '%'
+        OR p.department ILIKE '%' || search_text || '%'
 $$;

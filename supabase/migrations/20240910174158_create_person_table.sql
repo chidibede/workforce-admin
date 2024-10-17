@@ -1,4 +1,4 @@
-CREATE TABLE Person (
+CREATE TABLE Leader (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     identifier Text,
     firstname Text,
@@ -8,8 +8,9 @@ CREATE TABLE Person (
     fullname Text,
     department Text,
     team Text,
-    ispresentawakeningone BOOLEAN,
-    ispresentawakeningtwo BOOLEAN,
-    ispresentawakeningthree BOOLEAN,
+    workerrole Text,
+    fullnamereverse Text,
+    ispresent BOOLEAN,
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updatedat TIMESTAMP
 );
