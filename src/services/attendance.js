@@ -31,7 +31,7 @@ const markPresent = async (person) => {
 const manualAttendance = async (person) => {
   const { data, error } = await supabase
     .from("leader")
-    .insert({ ...person })
+    .insert({ ...person, validate: true })
     .select("*");
 
   if (error) {
