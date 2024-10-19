@@ -5,7 +5,7 @@ const markPresent = async (person) => {
   // const day = getAwakeningDay();
   const isPresentKey =  "ispresent";
   const { data: worker } = await supabase
-    .from("person")
+    .from("leader")
     .select("*")
     .eq("id", person.id);
 
@@ -17,7 +17,7 @@ const markPresent = async (person) => {
   const dateISO = dateUTC.toISOString();
 
   const { data, error } = await supabase
-    .from("person")
+    .from("leader")
     .update({ [isPresentKey]: true, updatedat: dateISO })
     .eq("id", person.id);
 
