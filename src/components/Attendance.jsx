@@ -28,6 +28,8 @@ const Attendance = () => {
     fullname: "",
   });
 
+  const title = "IPLC 2025 - Gbagada"
+
   const handleSearch = (e) => {
     setQuery(e.target.value);
     debouncedSearch(
@@ -115,7 +117,7 @@ const Attendance = () => {
           <h1 className="text-2xl font-bold mt-4">
             Harvesters International Christian Centre, Gbagada campus
           </h1>
-          <h2 className="text-2xl font-bold text-gray-500 mt-4">Leader's meeting</h2>
+          <h2 className="text-2xl font-bold text-gray-500 mt-4">{title}</h2>
         </header>
         <div className="bg-white shadow-lg rounded-xl p-6 mb-24 mt-12">
           <h1 className="text-2xl text-center font-bold mb-4">Attendance</h1>
