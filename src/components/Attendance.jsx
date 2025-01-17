@@ -131,7 +131,7 @@ const Attendance = () => {
             onChange={handleSearch}
           />
 
-          {/* Search Results */}
+          {/* Search Results attendance*/}
           {!isCreating && searchValue && filteredPeople?.length > 0 ? (
             <div>
               <ul className="space-y-2">
