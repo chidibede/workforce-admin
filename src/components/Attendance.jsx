@@ -1,7 +1,7 @@
 import { useSearchWorker } from "../services/search";
 import { useDebouncedSearch } from "../hooks/useDebouncedSearch";
 import { useState } from "react";
-import { useAttendance, useManualAttendance } from "../services/attendance";
+import { useAttendance, useManualAttendance, useWorkerUpdate } from "../services/attendance";
 import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -14,11 +14,13 @@ const Attendance = () => {
   const { data: filteredPeople, isLoading } = useSearchWorker(searchValue);
   const { mutate: markAttendanceMutation } = useAttendance();
   const { mutate: manualAttendanceMutation } = useManualAttendance();
+  const { mutate: updateWorker } = useWorkerUpdate();
   const [query, setQuery] = useState("");
   const [isCreating, setIsCreating] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [mutateIsLoadingId, setMutateIsLoadingId] = useState(0);
   const [manuallySaving, setManuallySaving] = useState(false);
+  const [isEditSaving, setIsEditSaving] = useState(false);
   const queryClient = useQueryClient();
   const [newPerson, setNewPerson] = useState({
     firstname: "",
@@ -101,6 +103,41 @@ const Attendance = () => {
           });
           setManuallySaving(false);
           setIsCreating(false);
+          throw error;
+        },
+      }
+    );
+  };
+
+  const handleUpdate = () => {
+    const isPresentKey = "ispresent";
+    setIsEditSaving(true);
+    updateWorker(
+      {
+        ...activePerson,
+        fullname:
+          `${activePerson.firstname.trim()} ${activePerson.lastname.trim()}`.trim(),
+        [isPresentKey]: true,
+      },
+      {
+        onSuccess() {
+          toast.success("Attendance manually added successfully");
+          queryClient.invalidateQueries();
+          setActivePerson({
+            firstname: "",
+            lastname: "",
+            phonenumber: "",
+            department: "",
+            team: "",
+            fullname: "",
+            email: "",
+          });
+          setIsEditSaving(false);
+          setIsEditing(false);
+        },
+        onError(error) {
+          setIsEditSaving(false);
+          setIsEditing(false);
           throw error;
         },
       }
@@ -381,7 +418,7 @@ const Attendance = () => {
                   onChange={(e) =>
                     setActivePerson({
                       ...activePerson,
-                      email: capitalize(e.target.value),
+                      email: e.target.value,
                     })
                   }
                 />
@@ -420,10 +457,10 @@ const Attendance = () => {
                   }
                 />
                 <button
-                  onClick={() => (!manuallySaving ? handleSave() : undefined)}
+                  onClick={() => (!isEditSaving ? handleUpdate() : undefined)}
                   className="w-full py-2 bg-blue-500 text-white rounded-lg cursor-pointer"
                 >
-                  {manuallySaving ? "Saving" : "Save"}
+                  {isEditSaving ? "Saving" : "Save"}
                 </button>
                 <button
                   onClick={resetEdit}

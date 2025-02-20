@@ -3,7 +3,7 @@ import supabase from "./supabase";
 
 const markPresent = async (person) => {
   // const day = getAwakeningDay();
-  const isPresentKey =  "ispresent";
+  const isPresentKey = "ispresent";
   const { data: worker } = await supabase
     .from("leader")
     .select("*")
@@ -40,6 +40,20 @@ const manualAttendance = async (person) => {
 
   return data;
 };
+const updateWorker = async (person) => {
+  const { id, ...rest} = person
+  const { data, error } = await supabase
+    .from("leader")
+    .update({ ...rest })
+    .eq("id", person.id)
+    .select("*");
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+};
 
 export const useAttendance = () => {
   return useMutation({
@@ -51,6 +65,13 @@ export const useAttendance = () => {
 export const useManualAttendance = () => {
   return useMutation({
     mutationFn: manualAttendance,
+    cacheTime: 0,
+  });
+};
+
+export const useWorkerUpdate = () => {
+  return useMutation({
+    mutationFn: updateWorker,
     cacheTime: 0,
   });
 };
