@@ -25,7 +25,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "update:leaders": "node scripts/updateLeaders"
+    "update:leaders": "node scripts/updateLeaders",
+    "login": "supabase login",
+    "migrate": "supabase db push",
+    "link": "supabase link"
   },
   "eslintConfig": {
     "extends": [
@@ -47,7 +50,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "supabase": "^1.191.3",
+    "supabase": "^2.12.1",
     "tailwindcss": "^3.4.10"
   }
 }

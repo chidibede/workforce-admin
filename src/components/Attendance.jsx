@@ -16,6 +16,7 @@ const Attendance = () => {
   const { mutate: manualAttendanceMutation } = useManualAttendance();
   const [query, setQuery] = useState("");
   const [isCreating, setIsCreating] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [mutateIsLoadingId, setMutateIsLoadingId] = useState(0);
   const [manuallySaving, setManuallySaving] = useState(false);
   const queryClient = useQueryClient();
@@ -26,9 +27,20 @@ const Attendance = () => {
     department: "",
     team: "",
     fullname: "",
+    email: "",
   });
 
-  const title = "IPLC 2025 - Gbagada"
+  const [activePerson, setActivePerson] = useState({
+    firstname: "",
+    lastname: "",
+    phonenumber: "",
+    department: "",
+    team: "",
+    fullname: "",
+    email: "",
+  });
+
+  const title = "Leaders Meeting - Gbagada";
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
@@ -45,6 +57,10 @@ const Attendance = () => {
 
   const resetCreate = () => {
     setIsCreating(false);
+  };
+
+  const resetEdit = () => {
+    setIsEditing(false);
   };
 
   const handleSave = () => {
@@ -68,6 +84,7 @@ const Attendance = () => {
             department: "",
             team: "",
             fullname: "",
+            email: "",
           });
           setManuallySaving(false);
           setIsCreating(false);
@@ -80,6 +97,7 @@ const Attendance = () => {
             department: "",
             team: "",
             fullname: "",
+            email: "",
           });
           setManuallySaving(false);
           setIsCreating(false);
@@ -102,6 +120,12 @@ const Attendance = () => {
         throw error;
       },
     });
+  };
+
+  const handleEdit = (person) => {
+    // Implement edit functionality
+    setIsEditing(true);
+    setActivePerson(person);
   };
 
   return (
@@ -132,7 +156,10 @@ const Attendance = () => {
           />
 
           {/* Search Results attendance*/}
-          {!isCreating && searchValue && filteredPeople?.length > 0 ? (
+          {!isCreating &&
+          !isEditing &&
+          searchValue &&
+          filteredPeople?.length > 0 ? (
             <div>
               <ul className="space-y-2">
                 {filteredPeople?.map((person, index) => (
@@ -157,23 +184,39 @@ const Attendance = () => {
                       )}
                     </div>
                     {person.ispresent ? (
-                      <button className="px-2 py-2 text-sm bg-green-500 text-white rounded-lg flex justify-between cursor-not-allowed">
-                        <CheckBadgeIcon className="text-white size-5" />
-                        <span className="ml-3">Present</span>
-                      </button>
+                      <div className="flex space-x-4 w-[30%]">
+                        <button className="px-2 py-2 text-sm bg-green-500 text-white rounded-lg flex justify-between cursor-not-allowed">
+                          <CheckBadgeIcon className="text-white size-5" />
+                          <span className="ml-3">Present</span>
+                        </button>
+                        <button
+                          onClick={() => handleEdit(person)}
+                          className="px-2 py-2 text-xs bg-gray-500 text-white cursor-pointer rounded-lg flex w-[30%]"
+                        >
+                          Edit
+                        </button>
+                      </div>
                     ) : (
-                      <button
-                        onClick={() =>
-                          mutateIsLoadingId === 0
-                            ? handleMarkPresent(person)
-                            : undefined
-                        }
-                        className="px-2 py-2 text-xs bg-blue-500 text-white rounded-lg flex"
-                      >
-                        {mutateIsLoadingId === person.id
-                          ? "Marking..."
-                          : "Mark Present"}
-                      </button>
+                      <div className="flex space-x-4 w-[30%]">
+                        <button
+                          onClick={() =>
+                            mutateIsLoadingId === 0
+                              ? handleMarkPresent(person)
+                              : undefined
+                          }
+                          className="px-2 py-2 text-xs bg-blue-500 text-white rounded-lg cursor-pointer flex"
+                        >
+                          {mutateIsLoadingId === person.id
+                            ? "Marking..."
+                            : "Mark Present"}
+                        </button>
+                        <button
+                          onClick={() => handleEdit(person)}
+                          className="px-2 py-2 text-xs bg-gray-500 text-white text-center cursor-pointer rounded-lg flex w-[30%]"
+                        >
+                          Edit
+                        </button>
+                      </div>
                     )}
                   </li>
                 ))}
@@ -242,6 +285,18 @@ const Attendance = () => {
                   }
                 />
                 <input
+                  type="email"
+                  placeholder="Email"
+                  className="w-full p-2 border rounded-lg"
+                  value={newPerson.email}
+                  onChange={(e) =>
+                    setNewPerson({
+                      ...newPerson,
+                      email: capitalize(e.target.value),
+                    })
+                  }
+                />
+                <input
                   type="text"
                   placeholder="Phone Number"
                   className="w-full p-2 border rounded-lg"
@@ -281,6 +336,98 @@ const Attendance = () => {
                 <button
                   onClick={resetCreate}
                   className="w-full py-2 bg-red-500 text-white rounded-lg"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
+          {/* Edit Form */}
+          {isEditing && (
+            <div className="mt-4">
+              <h2 className="text-xl font-bold mb-4 text-center">
+                Update worker info
+              </h2>
+              <div className="space-y-4">
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  className="w-full p-2 border rounded-lg"
+                  value={activePerson.firstname}
+                  onChange={(e) =>
+                    setActivePerson({
+                      ...activePerson,
+                      firstname: capitalize(e.target.value),
+                    })
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  className="w-full p-2 border rounded-lg"
+                  value={activePerson.lastname}
+                  onChange={(e) =>
+                    setActivePerson({
+                      ...activePerson,
+                      lastname: capitalize(e.target.value),
+                    })
+                  }
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="w-full p-2 border rounded-lg"
+                  value={activePerson.email}
+                  onChange={(e) =>
+                    setActivePerson({
+                      ...activePerson,
+                      email: capitalize(e.target.value),
+                    })
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="Phone Number"
+                  className="w-full p-2 border rounded-lg"
+                  value={activePerson.phonenumber}
+                  onChange={(e) =>
+                    setActivePerson({
+                      ...activePerson,
+                      phonenumber: e.target.value,
+                    })
+                  }
+                />
+                <Select
+                  label="Select team"
+                  options={teams}
+                  onChange={(value) =>
+                    setActivePerson({
+                      ...activePerson,
+                      team: capitalize(value),
+                    })
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="Department eg Career and Finance"
+                  className="w-full p-2 border rounded-lg"
+                  value={activePerson.department}
+                  onChange={(e) =>
+                    setActivePerson({
+                      ...activePerson,
+                      department: capitalize(e.target.value),
+                    })
+                  }
+                />
+                <button
+                  onClick={() => (!manuallySaving ? handleSave() : undefined)}
+                  className="w-full py-2 bg-blue-500 text-white rounded-lg cursor-pointer"
+                >
+                  {manuallySaving ? "Saving" : "Save"}
+                </button>
+                <button
+                  onClick={resetEdit}
+                  className="w-full py-2 bg-red-500 text-white rounded-lg cursor-pointer"
                 >
                   Cancel
                 </button>
