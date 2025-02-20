@@ -221,20 +221,20 @@ const Attendance = () => {
                       )}
                     </div>
                     {person.ispresent ? (
-                      <div className="flex space-x-4 w-[30%]">
+                      <div className="flex space-x-4">
                         <button className="px-2 py-2 text-sm bg-green-500 text-white rounded-lg flex justify-between cursor-not-allowed">
                           <CheckBadgeIcon className="text-white size-5" />
                           <span className="ml-3">Present</span>
                         </button>
                         <button
                           onClick={() => handleEdit(person)}
-                          className="px-2 py-2 text-xs bg-gray-500 text-white cursor-pointer rounded-lg flex w-[30%]"
+                          className="px-8 py-2 text-xs bg-gray-500 text-white cursor-pointer rounded-lg flex"
                         >
                           Edit
                         </button>
                       </div>
                     ) : (
-                      <div className="flex space-x-4 w-[30%]">
+                      <div className="flex space-x-4">
                         <button
                           onClick={() =>
                             mutateIsLoadingId === 0
@@ -249,7 +249,7 @@ const Attendance = () => {
                         </button>
                         <button
                           onClick={() => handleEdit(person)}
-                          className="px-2 py-2 text-xs bg-gray-500 text-white text-center cursor-pointer rounded-lg flex w-[30%]"
+                          className="px-8 py-2 text-xs bg-gray-500 text-white cursor-pointer rounded-lg flex"
                         >
                           Edit
                         </button>
