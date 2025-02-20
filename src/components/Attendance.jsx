@@ -228,7 +228,7 @@ const Attendance = () => {
                         </button>
                         <button
                           onClick={() => handleEdit(person)}
-                          className="px-8 py-2 text-xs bg-gray-500 text-white cursor-pointer rounded-lg flex"
+                          className="px-8 py-2 text-sm bg-gray-500 text-white cursor-pointer rounded-lg flex"
                         >
                           Edit
                         </button>
@@ -241,7 +241,7 @@ const Attendance = () => {
                               ? handleMarkPresent(person)
                               : undefined
                           }
-                          className="px-2 py-2 text-xs bg-blue-500 text-white rounded-lg cursor-pointer flex"
+                          className="px-2 py-2 text-sm bg-blue-500 text-white rounded-lg cursor-pointer flex"
                         >
                           {mutateIsLoadingId === person.id
                             ? "Marking..."
@@ -249,7 +249,7 @@ const Attendance = () => {
                         </button>
                         <button
                           onClick={() => handleEdit(person)}
-                          className="px-8 py-2 text-xs bg-gray-500 text-white cursor-pointer rounded-lg flex"
+                          className="px-8 py-2 text-sm bg-gray-500 text-white cursor-pointer rounded-lg flex"
                         >
                           Edit
                         </button>
