@@ -21,6 +21,9 @@ const App = () => {
           <Routes>
             <Route index element={<Attendance />} />
           </Routes>
+          <Routes>
+            <Route path="/admin/summary" element={<Attendance />} />
+          </Routes>
         </SkeletonTheme>
       </BrowserRouter>
       <ToastContainer

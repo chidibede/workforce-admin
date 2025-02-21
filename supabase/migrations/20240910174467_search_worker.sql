@@ -1,22 +1,25 @@
 
-CREATE TYPE LeaderType2 AS (
-    id INT,
-    identifier TEXT,
-    firstname TEXT,
-    lastname TEXT,
-    fullname TEXT,
-    department TEXT,
-    phonenumber TEXT,
-    email TEXT,
-    team TEXT,
-    workerrole TEXT,
-    updatedat TIMESTAMP,
-    fullnamereverse TEXT,
-    ispresent BOOLEAN
-);
+-- CREATE TYPE LeaderType2 AS (
+--     id INT,
+--     identifier TEXT,
+--     firstname TEXT,
+--     lastname TEXT,
+--     fullname TEXT,
+--     department TEXT,
+--     phonenumber TEXT,
+--     email TEXT,
+--     team TEXT,
+--     workerrole TEXT,
+--     updatedat TIMESTAMP,
+--     fullnamereverse TEXT,
+--     ispresent BOOLEAN,
+--     validate BOOLEAN,
+--     isactive BOOLEAN,
+--     isconfirmed BOOLEAN,
+-- );
 
 CREATE OR REPLACE FUNCTION get_search_results(search_text TEXT)
-RETURNS SETOF LeaderType2
+RETURNS SETOF record
 LANGUAGE sql
 AS $$
     SELECT 
@@ -32,7 +35,10 @@ AS $$
         p.workerrole,
         p.updatedat,
         p.fullnamereverse,
-        p.ispresent
+        p.ispresent,
+        p.validate,
+        p.isactive,
+        p.isconfirmed
     FROM 
         leader p
     WHERE 
