@@ -349,6 +349,7 @@ const Attendance = () => {
                 <Select
                   label="Select team"
                   options={teams}
+                  value={newPerson.team}
                   onChange={(value) =>
                     setNewPerson({
                       ...newPerson,
@@ -368,18 +369,18 @@ const Attendance = () => {
                     })
                   }
                 />
-                <div className="flex">
-                  <button
-                    onClick={() => (!manuallySaving ? handleSave() : undefined)}
-                    className="w-full py-2 bg-blue-500 text-white rounded-lg"
-                  >
-                    {manuallySaving ? "Saving" : "Save"}
-                  </button>
+                <div className="flex space-x-2">
                   <button
                     onClick={resetCreate}
                     className="w-full py-2 bg-red-500 text-white rounded-lg"
                   >
                     Cancel
+                  </button>
+                  <button
+                    onClick={() => (!manuallySaving ? handleSave() : undefined)}
+                    className="w-full py-2 bg-blue-500 text-white rounded-lg"
+                  >
+                    {manuallySaving ? "Saving" : "Save"}
                   </button>
                 </div>
               </div>
@@ -443,6 +444,7 @@ const Attendance = () => {
                 <Select
                   label="Select team"
                   options={teams}
+                  value={activePerson.team}
                   onChange={(value) =>
                     setActivePerson({
                       ...activePerson,
