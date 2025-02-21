@@ -1,11 +1,7 @@
 import { useSearchWorker } from "../services/search";
 import { useDebouncedSearch } from "../hooks/useDebouncedSearch";
 import { useState } from "react";
-import {
-  useAttendance,
-  useManualAttendance,
-  useWorkerUpdate,
-} from "../services/attendance";
+import { useAttendance, useManualAttendance, useWorkerUpdate } from "../services/attendance";
 import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -188,13 +184,13 @@ const Attendance = () => {
           <h1 className="text-2xl text-center font-bold mb-4">Attendance</h1>
 
           {/* Search Input */}
-          {!isEditing && <input
+          <input
             type="text"
             placeholder="Search by name or phone number"
             className="w-full mb-4 p-2 h-14 border rounded-lg"
             value={query}
             onChange={handleSearch}
-          />}
+          />
 
           {/* Search Results attendance*/}
           {!isCreating &&
@@ -230,16 +226,16 @@ const Attendance = () => {
                           <CheckBadgeIcon className="text-white size-5" />
                           <span className="ml-3">Present</span>
                         </button>
-                        {/* <button
+                        <button
                           onClick={() => handleEdit(person)}
-                          className="px-8 py-2 text-sm bg-blue-500 text-white cursor-pointer rounded-lg flex"
+                          className="px-8 py-2 text-sm bg-gray-500 text-white cursor-pointer rounded-lg flex"
                         >
-                          Open
-                        </button> */}
+                          Edit
+                        </button>
                       </div>
                     ) : (
                       <div className="flex space-x-4">
-                        {/* <button
+                        <button
                           onClick={() =>
                             mutateIsLoadingId === 0
                               ? handleMarkPresent(person)
@@ -250,12 +246,12 @@ const Attendance = () => {
                           {mutateIsLoadingId === person.id
                             ? "Marking..."
                             : "Mark Present"}
-                        </button> */}
+                        </button>
                         <button
                           onClick={() => handleEdit(person)}
-                          className="px-8 py-2 text-sm bg-blue-500 text-white cursor-pointer rounded-lg flex"
+                          className="px-8 py-2 text-sm bg-gray-500 text-white cursor-pointer rounded-lg flex"
                         >
-                          Open
+                          Edit
                         </button>
                       </div>
                     )}
@@ -274,7 +270,7 @@ const Attendance = () => {
             </div>
           ) : (
             <>
-              {!isCreating && !isEditing && (
+              {!isCreating && (
                 <div className="text-center my-4">
                   {isLoading && searchValue ? (
                     <p>Searching...</p>
@@ -368,20 +364,18 @@ const Attendance = () => {
                     })
                   }
                 />
-                <div className="flex">
-                  <button
-                    onClick={() => (!manuallySaving ? handleSave() : undefined)}
-                    className="w-full py-2 bg-blue-500 text-white rounded-lg"
-                  >
-                    {manuallySaving ? "Saving" : "Save"}
-                  </button>
-                  <button
-                    onClick={resetCreate}
-                    className="w-full py-2 bg-red-500 text-white rounded-lg"
-                  >
-                    Cancel
-                  </button>
-                </div>
+                <button
+                  onClick={() => (!manuallySaving ? handleSave() : undefined)}
+                  className="w-full py-2 bg-blue-500 text-white rounded-lg"
+                >
+                  {manuallySaving ? "Saving" : "Save"}
+                </button>
+                <button
+                  onClick={resetCreate}
+                  className="w-full py-2 bg-red-500 text-white rounded-lg"
+                >
+                  Cancel
+                </button>
               </div>
             </div>
           )}
@@ -462,20 +456,18 @@ const Attendance = () => {
                     })
                   }
                 />
-                <div className="flex space-x-2">
-                  <button
-                    onClick={resetEdit}
-                    className="w-full py-2 bg-red-500 text-white rounded-lg cursor-pointer"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={() => (!isEditSaving ? handleUpdate() : undefined)}
-                    className="w-full py-2 bg-blue-500 text-white rounded-lg cursor-pointer"
-                  >
-                    {isEditSaving ? "Marking..." : "Mark Attendance"}
-                  </button>
-                </div>
+                <button
+                  onClick={() => (!isEditSaving ? handleUpdate() : undefined)}
+                  className="w-full py-2 bg-blue-500 text-white rounded-lg cursor-pointer"
+                >
+                  {isEditSaving ? "Saving" : "Save"}
+                </button>
+                <button
+                  onClick={resetEdit}
+                  className="w-full py-2 bg-red-500 text-white rounded-lg cursor-pointer"
+                >
+                  Cancel
+                </button>
               </div>
             </div>
           )}

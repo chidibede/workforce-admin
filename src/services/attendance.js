@@ -44,7 +44,7 @@ const updateWorker = async (person) => {
   const { id, ...rest} = person
   const { data, error } = await supabase
     .from("leader")
-    .update({ ...rest })
+    .update({ ...rest, ispresent: true })
     .eq("id", person.id)
     .select("*");
 
