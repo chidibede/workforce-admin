@@ -4,6 +4,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Attendance from "./components/Attendance";
+import DashboardPage from "./components/DashboardPage";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -22,7 +23,7 @@ const App = () => {
             <Route index element={<Attendance />} />
           </Routes>
           <Routes>
-            <Route path="/admin/summary" element={<Attendance />} />
+            <Route path="/admin/summary" element={<DashboardPage />} />
           </Routes>
         </SkeletonTheme>
       </BrowserRouter>
