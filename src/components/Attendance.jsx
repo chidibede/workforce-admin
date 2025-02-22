@@ -382,7 +382,7 @@ const Attendance = () => {
                   onChange={(e) =>
                     setActivePerson({
                       ...activePerson,
-                      workerrole: capitalize(e.target.value),
+                      workerrole: e.target.value,
                     })
                   }
                 />
@@ -489,7 +489,7 @@ const Attendance = () => {
                   onChange={(e) =>
                     setActivePerson({
                       ...activePerson,
-                      workerrole: capitalize(e.target.value),
+                      workerrole: e.target.value,
                     })
                   }
                 />
