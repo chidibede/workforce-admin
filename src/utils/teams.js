@@ -38,7 +38,7 @@ export const teams = [
     label: "Pastoral Leaders",
     value: "Pastoral Leaders",
   },
-  { label: "Directional Leaders", value: "Directional Leaders"}
+  { label: "Directional Leaders", value: "Directional Leader"}
 ];
 export const teamsSummary = [
   {
@@ -74,7 +74,7 @@ export const teamsSummary = [
   {
     label:
       "Mission (NLP, HSAP, Evangelism, Etc)",
-    value: "Mission",
+    value: "Missions",
   },
   { label: "District/Community", value: "Districts" },
   {
@@ -85,7 +85,7 @@ export const teamsSummary = [
     label: "Pastoral Leaders",
     value: "Pastoral Leaders",
   },
-  { label: "Directional Leaders", value: "Directional Leaders"}
+  { label: "Directional Leaders", value: "Directional Leader"}
 ];
 
 
