@@ -25,6 +25,9 @@ const App = () => {
           <Routes>
             <Route path="/admin/summary" element={<DashboardPage />} />
           </Routes>
+          <Routes>
+            <Route path="/admin/department/summary" element={<DashboardPage />} />
+          </Routes>
         </SkeletonTheme>
       </BrowserRouter>
       <ToastContainer
