@@ -1,6 +1,7 @@
 import React from "react";
 import Select from "./Dropdown";
 import { useNavigate } from "react-router-dom";
+import { departmentsWithTeams } from "../utils/teams";
 
 const Summary = ({
   totalWorkers,
@@ -13,20 +14,56 @@ const Summary = ({
   onChange,
   team,
   title,
+  type,
+  onChangeDepartment,
+  activeTeam,
 }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const percentagePresent = totalWorkers
     ? ((presentWorkers / totalWorkers) * 100).toFixed(2)
     : 0;
 
+  const getDepartment = () => {
+    const departments = departmentsWithTeams[activeTeam];
+    const options = departments
+      ? departments.map((department) => ({
+          label: department,
+          values: department,
+        }))
+      : [];
+    return options;
+  };
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen flex items-center justify-center">
       <div>
-        <button className="ml-[65%] mb-6" onClick={() => navigate("/admin/department/summary")}>{`Department summary ->`}</button>
-        <Select options={teams} onChange={onChange} className="mb-3" />
+        {type && type === "department" ? (
+          <button
+            className="ml-[85%] mb-6"
+            onClick={() => navigate("/admin/summary")}
+          >{`<- Back`}</button>
+        ) : (
+          <button
+            className="ml-[65%] mb-6"
+            onClick={() => navigate("/admin/department/summary")}
+          >{`Department summary ->`}</button>
+        )}
+        {type && type === "department" ? (
+          <div>
+            <Select options={teams} onChange={onChange} className="mb-3" />
+            <Select
+              options={getDepartment() || []}
+              onChange={onChangeDepartment}
+              className="mb-3"
+            />
+          </div>
+        ) : (
+          <Select options={teams} onChange={onChange} className="mb-3" />
+        )}
         <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-lg">
           <h2 className="text-xl font-bold text-center mb-4 px-24">
-            Leaders Attendance Dashboard - {team === "All" ? "All Teams" : team} - 22 February 2025
+            Leaders Attendance Dashboard - {team === "All" ? "All Teams" : team}{" "}
+            - 22 February 2025
           </h2>
           <div className="grid grid-cols-2 gap-4 text-center">
             <div className="p-4 bg-blue-200 rounded-lg">

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Summary from "./Summary";
 import supabase from "../services/supabase";
-import { departments, teamsSummary } from "../utils/teams";
+import {
+  departmentsWithTeams,
+  teamsSummary,
+} from "../utils/teams";
 
 function DashboardPageByDepartment() {
   const [totalWorkers, setTotalWorkers] = useState(0);
@@ -11,6 +14,7 @@ function DashboardPageByDepartment() {
   const [confirmedAbsent, setConfirmedAbsent] = useState(0);
   const [totalConfirmed, setTotalConfirmed] = useState(0);
   const [teamName, setTeamName] = useState("All");
+  const [activeTeam, setActiveTeam] = useState("All");
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -95,6 +99,9 @@ function DashboardPageByDepartment() {
   }, [teamName]);
 
   const onChange = (val) => {
+    setActiveTeam(val);
+  };
+  const onChangeDepartment = (val) => {
     setTeamName(val);
   };
 
@@ -107,9 +114,12 @@ function DashboardPageByDepartment() {
         totalWorkers={totalWorkers}
         presentWorkers={presentWorkers}
         totalConfirmed={totalConfirmed}
-        teams={departments}
+        teams={teamsSummary}
         team={teamName}
         onChange={onChange}
+        type="department"
+        onChangeDepartment={onChangeDepartment}
+        activeTeam={activeTeam}
       />
     </div>
   );
