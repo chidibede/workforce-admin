@@ -11,6 +11,7 @@ const Summary = ({
   teams,
   onChange,
   team,
+  title
 }) => {
   const percentagePresent = totalWorkers
     ? ((presentWorkers / totalWorkers) * 100).toFixed(2)
@@ -26,15 +27,15 @@ const Summary = ({
           </h2>
           <div className="grid grid-cols-2 gap-4 text-center">
             <div className="p-4 bg-blue-200 rounded-lg">
-              <h3 className="text-lg font-semibold">Total Workers</h3>
+              <h3 className="text-lg font-semibold">Total {title}</h3>
               <p className="text-xl font-bold">{totalWorkers}</p>
             </div>
             <div className="p-4 bg-green-200 rounded-lg">
-              <h3 className="text-lg font-semibold">Present Workers</h3>
+              <h3 className="text-lg font-semibold">Present {title}</h3>
               <p className="text-xl font-bold">{presentWorkers}</p>
             </div>
             <div className="p-4 bg-red-200 rounded-lg">
-              <h3 className="text-lg font-semibold">Absent Workers</h3>
+              <h3 className="text-lg font-semibold">Absent {title}</h3>
               <p className="text-xl font-bold">{absentWorkers}</p>
             </div>
             <div className="p-4 bg-yellow-200 rounded-lg">
@@ -50,7 +51,7 @@ const Summary = ({
             <p className="text-xl font-bold">{confirmedAbsent}</p>
           </div> */}
             <div className="col-span-2 p-4 bg-gray-300 rounded-lg">
-              <h3 className="text-lg font-semibold">Total Confirmed Workers</h3>
+              <h3 className="text-lg font-semibold">Total Confirmed {title}</h3>
               <p className="text-xl font-bold">{totalConfirmed}</p>
             </div>
           </div>

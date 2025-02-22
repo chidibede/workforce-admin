@@ -110,6 +110,7 @@ function DashboardPage() {
         teams={teamsSummary}
         team={teamName}
         onChange={onChange}
+        title={"Leaders"}
       />
     </div>
   );
