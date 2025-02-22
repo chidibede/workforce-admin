@@ -338,7 +338,7 @@ const Attendance = () => {
                   onChange={(e) =>
                     setNewPerson({
                       ...newPerson,
-                      email: capitalize(e.target.value),
+                      email: e.target.value,
                     })
                   }
                 />
