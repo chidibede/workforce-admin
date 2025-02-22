@@ -26,7 +26,7 @@ const Summary = ({
         <Select options={teams} onChange={onChange} className="mb-3" />
         <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-lg">
           <h2 className="text-xl font-bold text-center mb-4 px-24">
-            Worker Attendance Dashboard - {team === "All" ? "All Teams" : team}
+            Leaders Attendance Dashboard - {team === "All" ? "All Teams" : team} - 22 February 2025
           </h2>
           <div className="grid grid-cols-2 gap-4 text-center">
             <div className="p-4 bg-blue-200 rounded-lg">

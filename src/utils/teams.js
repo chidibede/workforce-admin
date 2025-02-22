@@ -17,7 +17,7 @@ export const teams = [
   },
   {
     label: "Programs (Choir, Ushers, Etc)",
-    value: "Program",
+    value: "Programs",
   },
   { label: "Next Gen (Kidzone & Stir House)", value: "Next Gen" },
   {
@@ -58,7 +58,7 @@ export const teamsSummary = [
   },
   {
     label: "Programs (Choir, Ushers, Etc)",
-    value: "Program",
+    value: "Programs",
   },
   { label: "Next Gen (Kidzone & Stir House)", value: "Next Gen" },
   {
