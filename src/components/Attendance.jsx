@@ -34,6 +34,7 @@ const Attendance = () => {
     team: "",
     fullname: "",
     email: "",
+    workerrole: "",
   });
 
   const [activePerson, setActivePerson] = useState({
@@ -44,6 +45,7 @@ const Attendance = () => {
     team: "",
     fullname: "",
     email: "",
+    workerrole: "",
   });
 
   const title = "Leaders Meeting - Gbagada";
@@ -91,6 +93,7 @@ const Attendance = () => {
             team: "",
             fullname: "",
             email: "",
+            workerrole: "",
           });
           setManuallySaving(false);
           setIsCreating(false);
@@ -104,6 +107,7 @@ const Attendance = () => {
             team: "",
             fullname: "",
             email: "",
+            workerrole: "",
           });
           setManuallySaving(false);
           setIsCreating(false);
@@ -135,6 +139,7 @@ const Attendance = () => {
             team: "",
             fullname: "",
             email: "",
+            workerrole: "",
           });
           setIsEditSaving(false);
           setIsEditing(false);
@@ -369,6 +374,18 @@ const Attendance = () => {
                     })
                   }
                 />
+                <input
+                  type="text"
+                  placeholder="Role"
+                  className="w-full p-2 border rounded-lg"
+                  value={activePerson.workerrole}
+                  onChange={(e) =>
+                    setActivePerson({
+                      ...activePerson,
+                      workerrole: capitalize(e.target.value),
+                    })
+                  }
+                />
                 <div className="flex space-x-2">
                   <button
                     onClick={resetCreate}
@@ -461,6 +478,18 @@ const Attendance = () => {
                     setActivePerson({
                       ...activePerson,
                       department: capitalize(e.target.value),
+                    })
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="Role"
+                  className="w-full p-2 border rounded-lg"
+                  value={activePerson.workerrole}
+                  onChange={(e) =>
+                    setActivePerson({
+                      ...activePerson,
+                      workerrole: capitalize(e.target.value),
                     })
                   }
                 />
