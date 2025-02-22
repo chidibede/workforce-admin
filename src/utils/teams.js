@@ -196,6 +196,7 @@ export const teamsAndDepartments = [
 ];
 
 const depts = [
+  { department: "All" },
   {
     department: "Administration - Stirhouse",
   },
@@ -1136,8 +1137,6 @@ const depts = [
   {
     department: "Trailblazer Community",
   },
-
-
 
   {
     department: "Administration - Kidszone",
