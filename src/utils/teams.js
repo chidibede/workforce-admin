@@ -198,16 +198,7 @@ export const teamsAndDepartments = [
 const depts = [
   { department: "All" },
   {
-    department: "Administration - Stirhouse",
-  },
-  {
-    department: "Celebration",
-  },
-  {
     department: "Ushering - Iyaanu",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Greeters 3rd team",
@@ -222,22 +213,10 @@ const depts = [
     department: "Diamond ET",
   },
   {
-    department: "Benevolence",
-  },
-  {
-    department: "Venue Management",
-  },
-  {
     department: "Ushering - Bimpe",
   },
   {
-    department: "Women of Wisdom",
-  },
-  {
     department: "Harvesters Intelligence Unit",
-  },
-  {
-    department: "Growth Track",
   },
   {
     department: "Media-Graphics",
@@ -255,22 +234,13 @@ const depts = [
     department: "Group Partnership",
   },
   {
-    department: "Venue Management",
-  },
-  {
     department: "Communications (DMU)",
   },
   {
     department: "Stirhouse",
   },
   {
-    department: "Celebration",
-  },
-  {
     department: "HSAP",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Kidzone",
@@ -298,19 +268,10 @@ const depts = [
   },
 
   {
-    department: "Lightbearers Community",
-  },
-  {
     department: "Trailblazer Community",
   },
   {
-    department: "Lightbearers Community",
-  },
-  {
     department: "God's encounter",
-  },
-  {
-    department: "Growth Track",
   },
   {
     department: "Data Management",
@@ -343,9 +304,6 @@ const depts = [
     department: "Media-Photo (Capturing)",
   },
   {
-    department: "Growth Track",
-  },
-  {
     department: "Greeters 3rd team",
   },
   {
@@ -358,13 +316,7 @@ const depts = [
     department: "Media-Visuals",
   },
   {
-    department: "Singles Ministry",
-  },
-  {
     department: "Media-Graphics",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Interactors",
@@ -373,13 +325,7 @@ const depts = [
     department: "Learning and Development - Kidszone",
   },
   {
-    department: "Venue Management",
-  },
-  {
     department: "Special ministry",
-  },
-  {
-    department: "Celebration",
   },
   {
     department: "Prayer and Bible Study",
@@ -393,21 +339,12 @@ const depts = [
   {
     department: "Learning and Development - Kidszone",
   },
-  {
-    department: "Singles Ministry",
-  },
 
   {
     department: "Praise (Couple) Community",
   },
   {
-    department: "Venue Management",
-  },
-  {
     department: "Bethel Community",
-  },
-  {
-    department: "Venue Management",
   },
 
   {
@@ -418,9 +355,6 @@ const depts = [
   },
   {
     department: "God encounter",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "HSAP",
@@ -435,9 +369,6 @@ const depts = [
     department: "Media-Photo (Capturing)",
   },
   {
-    department: "Celebration",
-  },
-  {
     department: "Leadership Recruitment",
   },
   {
@@ -450,9 +381,6 @@ const depts = [
     department: "Prayer and Bible Study",
   },
   {
-    department: "Celebration",
-  },
-  {
     department: "Ceremonies",
   },
   {
@@ -460,9 +388,6 @@ const depts = [
   },
   {
     department: "Call Centre",
-  },
-  {
-    department: "Venue Management",
   },
   {
     department: "Media-Photo (Capturing)",
@@ -483,9 +408,6 @@ const depts = [
     department: "Workforce Admin",
   },
   {
-    department: "Women of Wisdom",
-  },
-  {
     department: "Medical Ministry",
   },
   {
@@ -493,9 +415,6 @@ const depts = [
   },
   {
     department: "Greeters",
-  },
-  {
-    department: "Venue Management",
   },
   {
     department: "Assimilation",
@@ -522,19 +441,10 @@ const depts = [
     department: "Attraction",
   },
   {
-    department: "Singles Ministry",
-  },
-  {
     department: "Discipleship",
   },
   {
-    department: "Lightbearers Community",
-  },
-  {
     department: "Stage management",
-  },
-  {
-    department: "Benevolence",
   },
   {
     department: "Prayer and Bible Study",
@@ -547,9 +457,6 @@ const depts = [
   },
   {
     department: "Media-Photo (Capturing)",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Unveil",
@@ -597,19 +504,10 @@ const depts = [
     department: "Weddings",
   },
   {
-    department: "Guest Welcome",
-  },
-  {
     department: "Unveil",
   },
   {
     department: "Pastoral Care",
-  },
-  {
-    department: "Venue Management",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Praise (Couple) Community",
@@ -619,9 +517,6 @@ const depts = [
   },
   {
     department: "Communications (DMU)",
-  },
-  {
-    department: "Singles Ministry",
   },
   {
     department: "New Convert",
@@ -637,12 +532,6 @@ const depts = [
     department: "Harvesters Intelligence Unit",
   },
   {
-    department: "Venue Management",
-  },
-  {
-    department: "Singles Ministry",
-  },
-  {
     department: "Bethel Community",
   },
   {
@@ -652,17 +541,7 @@ const depts = [
     department: "Ushering - Queen",
   },
   {
-    department: "",
-  },
-  {
-    department: "Lightbearers Community",
-  },
-
-  {
     department: "Bethel Community",
-  },
-  {
-    department: "Lightbearers Community",
   },
   {
     department: "Prayer and Bible Study",
@@ -671,22 +550,13 @@ const depts = [
     department: "Program Management",
   },
   {
-    department: "Women of Wisdom",
-  },
-  {
     department: "Media-Audio Production",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Unveil",
   },
   {
     department: "Info Hub",
-  },
-  {
-    department: "Celebration",
   },
   {
     department: "Media-Visuals",
@@ -704,9 +574,6 @@ const depts = [
     department: "Harvesters Intelligence Unit",
   },
   {
-    department: "Benevolence",
-  },
-  {
     department: "Administration - Kidszone",
   },
   {
@@ -719,16 +586,10 @@ const depts = [
     department: "Interactors",
   },
   {
-    department: "Singles Ministry",
-  },
-  {
     department: "Communities",
   },
   {
     department: "Finance",
-  },
-  {
-    department: "Prayer",
   },
   {
     department: "Venue Management",
@@ -740,46 +601,16 @@ const depts = [
     department: "Communications (DMU)",
   },
   {
-    department: "Venue Management",
-  },
-  {
     department: "Media-Video",
   },
   {
-    department: "Women of Wisdom",
-  },
-  {
-    department: "Celebration",
-  },
-  {
     department: "Career and Finance",
-  },
-  {
-    department: "Women of Wisdom",
-  },
-  {
-    department: "Guest Welcome",
   },
   {
     department: "Reach and Partnership - Kidszone",
   },
   {
     department: "Harmony Community",
-  },
-  {
-    department: "Benevolence",
-  },
-  {
-    department: "Women of Wisdom",
-  },
-  {
-    department: "Lightbearers Community",
-  },
-  {
-    department: "Lightbearers Community",
-  },
-  {
-    department: "Lightbearers Community",
   },
   {
     department: "Trailblazer",
@@ -792,9 +623,6 @@ const depts = [
   },
   {
     department: "Greeters 2nd team",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Programs Admin Team",
@@ -815,15 +643,6 @@ const depts = [
     department: "Call Center",
   },
   {
-    department: "Ministry team leadership",
-  },
-  {
-    department: "Singles Ministry",
-  },
-  {
-    department: "Women of Wisdom",
-  },
-  {
     department: "Sound",
   },
   {
@@ -831,18 +650,6 @@ const depts = [
   },
   {
     department: "Workforce Admin",
-  },
-  {
-    department: "Ministry team leadership",
-  },
-  {
-    department: "Lightbearers Community",
-  },
-  {
-    department: "Women of Wisdom",
-  },
-  {
-    department: "Lightbearers Community",
   },
   {
     department: "Programs management",
@@ -857,34 +664,13 @@ const depts = [
     department: "Sound",
   },
   {
-    department: "Program Management",
-  },
-  {
     department: "Media-Livestream",
   },
   {
     department: "Musicians",
   },
   {
-    department: "Recruitment and Assimilation",
-  },
-  {
-    department: "Venue Management",
-  },
-  {
-    department: "Lightbearers Community",
-  },
-  {
-    department: "Guest Welcome",
-  },
-  {
-    department: "Recruitment and Assimilation",
-  },
-  {
     department: "Media-Text & Timing",
-  },
-  {
-    department: "Singles Ministry",
   },
   {
     department: "Bethel Community",
@@ -893,13 +679,7 @@ const depts = [
     department: "General Service",
   },
   {
-    department: "Lightbearers Community",
-  },
-  {
     department: "Trailblazer Community",
-  },
-  {
-    department: "Lightbearers Community",
   },
   {
     department: "Bethel Community",
@@ -920,31 +700,16 @@ const depts = [
     department: "Administration - Kidszone",
   },
   {
-    department: "Women of Wisdom",
-  },
-  {
     department: "Learning and Development - Kidszone",
   },
   {
     department: "HSAP",
   },
   {
-    department: "Benevolence",
-  },
-  {
-    department: "Women of Wisdom",
-  },
-  {
-    department: "Women of Wisdom",
-  },
-  {
     department: "Weddings",
   },
   {
     department: "Ushering - Kofoworola",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Kids Support",
@@ -956,16 +721,10 @@ const depts = [
     department: "Sunrise",
   },
   {
-    department: "Growth Track",
-  },
-  {
     department: "Communication",
   },
   {
     department: "Ushering - Bimpe",
-  },
-  {
-    department: "Singles Ministry",
   },
   {
     department: "Call Center",
@@ -978,9 +737,6 @@ const depts = [
   },
   {
     department: "Communications (DMU)",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Media-Visuals",
@@ -1007,15 +763,9 @@ const depts = [
     department: "Celebrations and venue management",
   },
   {
-    department: "Administration - Stirhouse",
-  },
-  {
     department: "HSDC",
   },
 
-  {
-    department: "Venue Management",
-  },
   {
     department: "Unveil",
   },
@@ -1032,31 +782,13 @@ const depts = [
     department: "Pastoral Care",
   },
   {
-    department: "Celebration",
-  },
-  {
-    department: "Singles Ministry",
-  },
-  {
-    department: "Celebration",
-  },
-  {
-    department: "Venue Management",
-  },
-  {
     department: "Leadership Recruitment",
-  },
-  {
-    department: "Singles Ministry",
   },
   {
     department: "Medical Ministry",
   },
   {
     department: "Media-Photo (Capturing)",
-  },
-  {
-    department: "Singles Ministry",
   },
   {
     department: "Invite & Invest",
@@ -1089,22 +821,10 @@ const depts = [
     department: "Pearl ET",
   },
   {
-    department: "Recruitment and Assimilation",
-  },
-  {
-    department: "Venue Management",
-  },
-  {
-    department: "Venue Management",
-  },
-  {
     department: "Traffic",
   },
   {
     department: "Media-Administration",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Administration - Kidszone",
@@ -1117,9 +837,6 @@ const depts = [
   },
   {
     department: "Sunsrise",
-  },
-  {
-    department: "Lightbearers Community",
   },
   {
     department: "Medicals",
@@ -1148,19 +865,10 @@ const depts = [
     department: "Maturity",
   },
   {
-    department: "Women of Wisdom",
-  },
-  {
     department: "Publicity",
   },
   {
-    department: "Celebration",
-  },
-  {
     department: "Greeters",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Media-Video",
@@ -1169,28 +877,13 @@ const depts = [
     department: "Media-Photo (Capturing)",
   },
   {
-    department: "Celebration",
-  },
-  {
     department: "Harvesters Intelligence Unit",
-  },
-  {
-    department: "Women of Wisdom",
-  },
-  {
-    department: "Benevolence",
-  },
-  {
-    department: "Celebration",
   },
   {
     department: "Courses HSDC",
   },
   {
     department: "Ushering - Queen",
-  },
-  {
-    department: "Celebration",
   },
   {
     department: "Invest and Invite",
@@ -1220,31 +913,16 @@ const depts = [
     department: "Ceremonies",
   },
   {
-    department: "Women of wisdom",
-  },
-  {
-    department: "Singles Ministry",
-  },
-  {
     department: "Zonal ",
   },
   {
     department: "Prayer and Bible Study",
   },
   {
-    department: "Venue Management",
-  },
-  {
     department: "Administration - Stirhouse",
   },
   {
-    department: "Venue Management",
-  },
-  {
     department: "Programming and Environment - Kidszone",
-  },
-  {
-    department: "Venue Management",
   },
   {
     department: "Learning and Development - Kidszone",
@@ -1278,9 +956,6 @@ const depts = [
     department: "Courses HSDC",
   },
   {
-    department: "Growth Track",
-  },
-  {
     department: "Unveil",
   },
   {
@@ -1288,9 +963,6 @@ const depts = [
   },
   {
     department: "Media-Video",
-  },
-  {
-    department: "Lightbearers Community",
   },
   {
     department: "Medical Ministry",
@@ -1305,9 +977,6 @@ const depts = [
     department: "Greeters 1st team",
   },
   {
-    department: "Women of Wisdom",
-  },
-  {
     department: "Group Partnership",
   },
   {
@@ -1315,9 +984,6 @@ const depts = [
   },
   {
     department: "Communications (DMU)",
-  },
-  {
-    department: "Venue Management",
   },
   {
     department: "Medical Ministry",
@@ -1329,16 +995,7 @@ const depts = [
     department: "Info Hub",
   },
   {
-    department: "Singles Ministry",
-  },
-  {
     department: "Musicians",
-  },
-  {
-    department: "Celebration",
-  },
-  {
-    department: "Singles Ministry",
   },
   {
     department: "Communications (DMU)",
@@ -1354,12 +1011,6 @@ const depts = [
     department: "Media-Video",
   },
   {
-    department: "Singles Ministry",
-  },
-  {
-    department: "Women of Wisdom",
-  },
-  {
     department: "Exalted Tribe",
   },
   {
@@ -1367,9 +1018,6 @@ const depts = [
   },
   {
     department: "Bethel Community",
-  },
-  {
-    department: "Lightbearers Community",
   },
   {
     department: "Bethel Community",
@@ -1387,9 +1035,6 @@ const depts = [
     department: "Leadership Recruitment",
   },
   {
-    department: "Women of Wisdom",
-  },
-  {
     department: "Leadership Recruitment",
   },
   {
@@ -1397,9 +1042,6 @@ const depts = [
   },
   {
     department: "Ushering - Bimpe",
-  },
-  {
-    department: "Singles Ministry",
   },
   {
     department: "Learning and Development - Stirhouse",
@@ -1444,9 +1086,6 @@ const depts = [
     department: "Pearl ET",
   },
   {
-    department: "Singles Ministry",
-  },
-  {
     department: "Weddings",
   },
   {
@@ -1474,9 +1113,6 @@ const depts = [
     department: "Harmony Community",
   },
   {
-    department: "Venue Management",
-  },
-  {
     department: "Unveil",
   },
   {
@@ -1486,22 +1122,13 @@ const depts = [
     department: "Bethel Community",
   },
   {
-    department: "Lightbearers Community",
-  },
-  {
     department: "Gbagada Estate Community",
-  },
-  {
-    department: "Lightbearers Community",
   },
   {
     department: "Prayer and Bible Study",
   },
   {
     department: "Media-Visuals",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Prison Ministry",
@@ -1537,13 +1164,7 @@ const depts = [
     department: "Medical Ministry",
   },
   {
-    department: "Celebration",
-  },
-  {
     department: "Admin and Facility",
-  },
-  {
-    department: "Women of Wisdom",
   },
   {
     department: "Greeters 4th team",
@@ -1585,25 +1206,13 @@ const depts = [
     department: "Women of Wisdom",
   },
   {
-    department: "Program Management",
-  },
-  {
     department: "Trailblazer Community",
   },
   {
     department: "Programs Admin Team",
   },
   {
-    department: "Lightbearers Community",
-  },
-  {
     department: "House of Dorcas",
-  },
-  {
-    department: "Singles Ministry",
-  },
-  {
-    department: "Venue Management",
   },
   {
     department: "Media-Graphics",
@@ -1613,9 +1222,6 @@ const depts = [
   },
   {
     department: "Singles",
-  },
-  {
-    department: "Celebration",
   },
   {
     department: "Attraction",
@@ -1642,12 +1248,6 @@ const depts = [
     department: "Leadership& development",
   },
   {
-    department: "",
-  },
-  {
-    department: "",
-  },
-  {
     department: "Data Management",
   },
   {
@@ -1660,16 +1260,7 @@ const depts = [
     department: "Ministry",
   },
   {
-    department: "Women of Wisdom",
-  },
-  {
-    department: "Benevolence",
-  },
-  {
     department: "Facility & Admin",
-  },
-  {
-    department: "Celebration",
   },
   {
     department: "Exalted tribe",
@@ -1687,9 +1278,6 @@ const depts = [
     department: "Exalted tribe",
   },
   {
-    department: "Program Management",
-  },
-  {
     department: "Communications",
   },
   {
@@ -1697,15 +1285,6 @@ const depts = [
   },
   {
     department: "Prayer and Bible Study",
-  },
-  {
-    department: "Growth Track",
-  },
-  {
-    department: "Benevolence",
-  },
-  {
-    department: "Guest welcome",
   },
   {
     department: "Stir House",
@@ -1723,12 +1302,6 @@ const depts = [
     department: "Spiritual Progress & Development",
   },
   {
-    department: "Prayer",
-  },
-  {
-    department: "",
-  },
-  {
     department: "Royal priesthood",
   },
   {
@@ -1736,9 +1309,6 @@ const depts = [
   },
   {
     department: "Stir house",
-  },
-  {
-    department: "Women of wisdom",
   },
   {
     department: "Facility",
@@ -1753,9 +1323,6 @@ const depts = [
     department: "Venue manangement",
   },
   {
-    department: "Women of Wisdom",
-  },
-  {
     department: "Ushering - Tosin",
   },
   {
@@ -1763,9 +1330,6 @@ const depts = [
   },
   {
     department: "Benevolence",
-  },
-  {
-    department: "Growth track",
   },
   {
     department: "Celebration",
@@ -1777,22 +1341,10 @@ const depts = [
     department: "Recruitment and Assimilation",
   },
   {
-    department: "Singles Ministry",
-  },
-  {
     department: "Media experience",
   },
   {
-    department: "Guest welcome",
-  },
-  {
-    department: "Singles Ministry",
-  },
-  {
     department: "Programs management",
-  },
-  {
-    department: "Guest welcome",
   },
   {
     department: "Learning and Development - Kidszone",
@@ -1807,19 +1359,10 @@ const depts = [
     department: "Chiors",
   },
   {
-    department: "Ushering",
-  },
-  {
     department: "Exalted tribe",
   },
   {
     department: "Exalted tribe",
-  },
-  {
-    department: "Guest welcome",
-  },
-  {
-    department: "Venue Management",
   },
   {
     department: "Discipleship",
@@ -1837,16 +1380,10 @@ const depts = [
     department: "Finance",
   },
   {
-    department: "Ushering",
-  },
-  {
     department: "Protocol",
   },
   {
     department: "Drama",
-  },
-  {
-    department: "Ministry team leadership",
   },
   {
     department: "Ushering",
@@ -1859,12 +1396,6 @@ const depts = [
   },
   {
     department: "Media- text and timing",
-  },
-  {
-    department: "Administration - Stirhouse",
-  },
-  {
-    department: "Prayer",
   },
   {
     department: "Prayer",
@@ -1882,25 +1413,13 @@ const depts = [
     department: "Shomulu district shepherd",
   },
   {
-    department: "Men of Harvest",
-  },
-  {
     department: "Singles",
-  },
-  {
-    department: "Singles ministry",
   },
   {
     department: "House of dorcas",
   },
   {
     department: "Media",
-  },
-  {
-    department: "Ushering",
-  },
-  {
-    department: "Guest welcome",
   },
   {
     department: "Harvesters Intelligence Unit",
@@ -1910,9 +1429,6 @@ const depts = [
   },
   {
     department: "Learning and Development - Kidszone",
-  },
-  {
-    department: "Guest welcome",
   },
   {
     department: "Exalted tribe",
@@ -1937,9 +1453,6 @@ const depts = [
   },
   {
     department: "Bethel Community",
-  },
-  {
-    department: "Lightbearers Community",
   },
   {
     department: "Next gen",

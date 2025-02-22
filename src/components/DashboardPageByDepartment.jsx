@@ -47,8 +47,6 @@ function DashboardPageByDepartment() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const depts = await supabase.from("leader").select("department")
-      console.log(depts)
       let query = supabase
         .from("leader")
         .select("*", { count: "exact", head: true });
