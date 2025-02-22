@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Attendance from "./components/Attendance";
 import DashboardPage from "./components/DashboardPage";
+import DashboardPageByDepartment from "./components/DashboardPageByDepartment";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -26,7 +27,7 @@ const App = () => {
             <Route path="/admin/summary" element={<DashboardPage />} />
           </Routes>
           <Routes>
-            <Route path="/admin/department/summary" element={<DashboardPage />} />
+            <Route path="/admin/department/summary" element={<DashboardPageByDepartment />} />
           </Routes>
         </SkeletonTheme>
       </BrowserRouter>

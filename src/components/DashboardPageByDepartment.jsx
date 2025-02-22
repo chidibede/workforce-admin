@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Summary from "./Summary";
 import supabase from "../services/supabase";
-import { teamsSummary } from "../utils/teams";
+import { departments, teamsSummary } from "../utils/teams";
 
 function DashboardPageByDepartment() {
   const [totalWorkers, setTotalWorkers] = useState(0);
@@ -47,6 +47,8 @@ function DashboardPageByDepartment() {
 
   useEffect(() => {
     const fetchData = async () => {
+      const depts = await supabase.from("leader").select("department")
+      console.log(depts)
       let query = supabase
         .from("leader")
         .select("*", { count: "exact", head: true });
@@ -107,7 +109,7 @@ function DashboardPageByDepartment() {
         totalWorkers={totalWorkers}
         presentWorkers={presentWorkers}
         totalConfirmed={totalConfirmed}
-        teams={teamsSummary}
+        teams={departments}
         team={teamName}
         onChange={onChange}
       />

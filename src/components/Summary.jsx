@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "./Dropdown";
+import { useNavigate } from "react-router-dom";
 
 const Summary = ({
   totalWorkers,
@@ -11,8 +12,9 @@ const Summary = ({
   teams,
   onChange,
   team,
-  title
+  title,
 }) => {
+  const navigate = useNavigate()
   const percentagePresent = totalWorkers
     ? ((presentWorkers / totalWorkers) * 100).toFixed(2)
     : 0;
@@ -20,6 +22,7 @@ const Summary = ({
   return (
     <div className="p-6 bg-gray-100 min-h-screen flex items-center justify-center">
       <div>
+        <button className="ml-[65%] mb-6" onClick={() => navigate("/admin/department/summary")}>{`Department summary ->`}</button>
         <Select options={teams} onChange={onChange} className="mb-3" />
         <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-lg">
           <h2 className="text-xl font-bold text-center mb-4 px-24">
