@@ -35,14 +35,14 @@ const Summary = ({
             <h3 className="text-lg font-semibold">% Present</h3>
             <p className="text-xl font-bold">{percentagePresent}%</p>
           </div>
-          <div className="p-4 bg-purple-200 rounded-lg">
+          {/* <div className="p-4 bg-purple-200 rounded-lg">
             <h3 className="text-lg font-semibold">Confirmed Present</h3>
             <p className="text-xl font-bold">{confirmedPresent}</p>
           </div>
           <div className="p-4 bg-orange-200 rounded-lg">
             <h3 className="text-lg font-semibold">Confirmed Absent</h3>
             <p className="text-xl font-bold">{confirmedAbsent}</p>
-          </div>
+          </div> */}
           <div className="col-span-2 p-4 bg-gray-300 rounded-lg">
             <h3 className="text-lg font-semibold">Total Confirmed Workers</h3>
             <p className="text-xl font-bold">{totalConfirmed}</p>
