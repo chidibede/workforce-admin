@@ -1,6 +1,6 @@
 import { useSearchWorker } from "../services/search";
 import { useDebouncedSearch } from "../hooks/useDebouncedSearch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useAttendance,
   useManualAttendance,
@@ -25,7 +25,6 @@ const Attendance = () => {
   const [mutateIsLoadingId, setMutateIsLoadingId] = useState(0);
   const [manuallySaving, setManuallySaving] = useState(false);
   const [isEditSaving, setIsEditSaving] = useState(false);
-  const [activeTeam, setActiveTeam] = useState(false);
   const queryClient = useQueryClient();
   const [newPerson, setNewPerson] = useState({
     firstname: "",
@@ -35,7 +34,6 @@ const Attendance = () => {
     team: "",
     fullname: "",
     email: "",
-    workerrole: "",
   });
 
   const [activePerson, setActivePerson] = useState({
@@ -46,8 +44,9 @@ const Attendance = () => {
     team: "",
     fullname: "",
     email: "",
-    workerrole: "",
   });
+
+  const [activeTeam, setActiveTeam] = useState(activePerson.team);
 
   const title = "Workers Meeting - Gbagada";
 
@@ -70,6 +69,7 @@ const Attendance = () => {
 
   const resetEdit = () => {
     setIsEditing(false);
+    setActiveTeam("")
   };
 
   const handleSave = () => {
@@ -180,7 +180,7 @@ const Attendance = () => {
   };
 
   const getDepartment = () => {
-    const departments = departmentsWithTeams[activeTeam];
+    const departments = departmentsWithTeams[activeTeam || activePerson.team];
     const options = departments
       ? departments.map((department) => ({
           label: department,
@@ -420,7 +420,7 @@ const Attendance = () => {
                     className="mb-3"
                   />
                 </div>
-                <input
+                {/* <input
                   type="text"
                   placeholder="Role"
                   className="w-full p-2 border rounded-lg"
@@ -431,7 +431,7 @@ const Attendance = () => {
                       workerrole: e.target.value,
                     })
                   }
-                />
+                /> */}
                 <div className="flex space-x-2">
                   <button
                     onClick={resetCreate}
@@ -530,6 +530,7 @@ const Attendance = () => {
                 <div>
                   <Select
                     options={teamsSummary}
+                    defaultValue={activePerson.team}
                     onChange={(value) => {
                       setActiveTeam(value);
                       setActivePerson({
@@ -541,6 +542,7 @@ const Attendance = () => {
                   />
                   <Select
                     options={getDepartment() || []}
+                    defaultValue={activePerson.department}
                     onChange={(value) =>
                       setActivePerson({
                         ...activePerson,
@@ -550,7 +552,7 @@ const Attendance = () => {
                     className="mb-3"
                   />
                 </div>
-                <input
+                {/* <input
                   type="text"
                   placeholder="Role"
                   className="w-full p-2 border rounded-lg"
@@ -561,7 +563,7 @@ const Attendance = () => {
                       workerrole: e.target.value,
                     })
                   }
-                />
+                /> */}
                 <div className="flex space-x-2">
                   <button
                     onClick={resetEdit}
