@@ -187,7 +187,14 @@ const Attendance = () => {
           values: department,
         }))
       : [];
-    return options;
+
+    const finalOptions = [
+      {
+        label: "Choose department",
+        values: null,
+      },
+    ].concat(options);
+    return finalOptions;
   };
 
   return (
