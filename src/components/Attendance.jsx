@@ -10,7 +10,7 @@ import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { capitalize } from "lodash";
-import { teams } from "../utils/teams";
+import { departmentsWithTeams, teams, teamsSummary } from "../utils/teams";
 import Select from "./Dropdown";
 
 const Attendance = () => {
@@ -25,6 +25,7 @@ const Attendance = () => {
   const [mutateIsLoadingId, setMutateIsLoadingId] = useState(0);
   const [manuallySaving, setManuallySaving] = useState(false);
   const [isEditSaving, setIsEditSaving] = useState(false);
+  const [activeTeam, setActiveTeam] = useState(false);
   const queryClient = useQueryClient();
   const [newPerson, setNewPerson] = useState({
     firstname: "",
@@ -48,7 +49,7 @@ const Attendance = () => {
     workerrole: "",
   });
 
-  const title = "Leaders Meeting - Gbagada";
+  const title = "Workers Meeting - Gbagada";
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
@@ -118,6 +119,10 @@ const Attendance = () => {
   };
 
   const handleUpdate = () => {
+    if (!activePerson.team || !activePerson.department) {
+      toast.error("Team or department is missing");
+      return;
+    }
     const isPresentKey = "ispresent";
     setIsEditSaving(true);
     updateWorker(
@@ -174,11 +179,22 @@ const Attendance = () => {
     setActivePerson(person);
   };
 
+  const getDepartment = () => {
+    const departments = departmentsWithTeams[activeTeam];
+    const options = departments
+      ? departments.map((department) => ({
+          label: department,
+          values: department,
+        }))
+      : [];
+    return options;
+  };
+
   return (
     <div className="min-h-screen flex flex-col md:items-center bg-gray-50 p-4">
       <div className="lg:w-5/12">
         {/* Header with Logo and Title */}
-        <header className="text-center mb-4 mt-8">
+        <header className="text-center mb-4 mt-1">
           <img
             src="/logo.jpg"
             alt="Harvesters International Christian Center Logo"
@@ -190,16 +206,16 @@ const Attendance = () => {
           <h2 className="text-2xl font-bold text-gray-500 mt-4">{title}</h2>
         </header>
         <div className="bg-white shadow-lg rounded-xl p-6 mb-24 mt-12">
-          <h1 className="text-2xl text-center font-bold mb-4">Attendance</h1>
-
           {/* Search Input */}
-          {!isEditing && <input
-            type="text"
-            placeholder="Search by name or phone number"
-            className="w-full mb-4 p-2 h-14 border rounded-lg"
-            value={query}
-            onChange={handleSearch}
-          />}
+          {!isEditing && (
+            <input
+              type="text"
+              placeholder="Search by name or phone number"
+              className="w-full mb-4 p-2 h-14 border rounded-lg"
+              value={query}
+              onChange={handleSearch}
+            />
+          )}
 
           {/* Search Results attendance*/}
           {!isCreating &&
@@ -351,7 +367,7 @@ const Attendance = () => {
                     setNewPerson({ ...newPerson, phonenumber: e.target.value })
                   }
                 />
-                <Select
+                {/* <Select
                   label="Select team"
                   options={teams}
                   value={newPerson.team}
@@ -373,7 +389,30 @@ const Attendance = () => {
                       department: capitalize(e.target.value),
                     })
                   }
-                />
+                /> */}
+                <div>
+                  <Select
+                    options={teamsSummary}
+                    onChange={(value) => {
+                      setActiveTeam(value);
+                      setActivePerson({
+                        ...newPerson,
+                        team: capitalize(value),
+                      });
+                    }}
+                    className="mb-3"
+                  />
+                  <Select
+                    options={getDepartment() || []}
+                    onChange={(value) =>
+                      setActivePerson({
+                        ...newPerson,
+                        department: capitalize(value),
+                      })
+                    }
+                    className="mb-3"
+                  />
+                </div>
                 <input
                   type="text"
                   placeholder="Role"
@@ -405,7 +444,7 @@ const Attendance = () => {
           )}
           {/* Edit Form */}
           {isEditing && (
-            <div className="mt-4">
+            <div className="mt-1">
               <h2 className="text-xl font-bold mb-4 text-center">
                 Update worker info
               </h2>
@@ -458,7 +497,7 @@ const Attendance = () => {
                     })
                   }
                 />
-                <Select
+                {/* <Select
                   label="Select team"
                   options={teams}
                   value={activePerson.team}
@@ -480,7 +519,30 @@ const Attendance = () => {
                       department: capitalize(e.target.value),
                     })
                   }
-                />
+                /> */}
+                <div>
+                  <Select
+                    options={teamsSummary}
+                    onChange={(value) => {
+                      setActiveTeam(value);
+                      setActivePerson({
+                        ...activePerson,
+                        team: capitalize(value),
+                      });
+                    }}
+                    className="mb-3"
+                  />
+                  <Select
+                    options={getDepartment() || []}
+                    onChange={(value) =>
+                      setActivePerson({
+                        ...activePerson,
+                        department: capitalize(value),
+                      })
+                    }
+                    className="mb-3"
+                  />
+                </div>
                 <input
                   type="text"
                   placeholder="Role"
