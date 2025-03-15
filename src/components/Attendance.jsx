@@ -69,7 +69,7 @@ const Attendance = () => {
 
   const resetEdit = () => {
     setIsEditing(false);
-    setActiveTeam("")
+    setActiveTeam("");
   };
 
   const handleSave = () => {
@@ -121,6 +121,11 @@ const Attendance = () => {
   const handleUpdate = () => {
     if (!activePerson.team || !activePerson.department) {
       toast.error("Team or department is missing");
+      return;
+    }
+
+    if (!activePerson.firstname || !activePerson.phonenumber) {
+      toast.error("Name or phone number is missing");
       return;
     }
     const isPresentKey = "ispresent";
