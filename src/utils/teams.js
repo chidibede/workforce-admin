@@ -149,6 +149,7 @@ export const departmentsWithTeams = {
     "Sunrise Community"
   ],
   Programs: [
+    "Drama",
     "Sapphire ET",
     "Musicians",
     "Diamond ET",
