@@ -146,9 +146,11 @@ export const departmentsWithTeams = {
     "Praise (Couple) Community",
     "Gbagada Estate Community",
     "Anagkazo Community",
-    "Sunrise Community"
+    "Sunrise Community",
+    "Trailblazer"
   ],
   Programs: [
+    "Exalted Tribe",
     "Drama",
     "Sapphire ET",
     "Musicians",
@@ -200,8 +202,8 @@ export const departmentsWithTeams = {
     "Programming and Environment - Kidszone",
     "Learning and Development - Kidszone"
   ],
-  "Pastoral Leader": [
-    "Pastoral Leader"
+  "Pastoral Leaders": [
+    "Pastoral Leaders"
   ],
   "Directional Leader": [
     "Directional Leader"
