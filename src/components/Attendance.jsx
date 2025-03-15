@@ -407,7 +407,7 @@ const Attendance = () => {
                     options={teamsSummary}
                     onChange={(value) => {
                       setActiveTeam(value);
-                      setActivePerson({
+                      setNewPerson({
                         ...newPerson,
                         team: capitalize(value),
                       });
@@ -417,7 +417,7 @@ const Attendance = () => {
                   <Select
                     options={getDepartment() || []}
                     onChange={(value) =>
-                      setActivePerson({
+                      setNewPerson({
                         ...newPerson,
                         department: capitalize(value),
                       })
