@@ -38,7 +38,8 @@ AS $$
         p.ispresent,
         p.validate,
         p.isactive,
-        p.isconfirmed
+        p.isconfirmed,
+        p.campus
     FROM 
         leader p
     WHERE 
@@ -50,4 +51,5 @@ AS $$
         OR p.team ILIKE '%' || search_text || '%'
         OR p.department ILIKE '%' || search_text || '%'
         OR p.email ILIKE '%' || search_text || '%'
+        OR p.campus ILIKE '%' || search_text || '%'
 $$;

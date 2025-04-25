@@ -44,11 +44,12 @@ const Attendance = () => {
     team: "",
     fullname: "",
     email: "",
+    campus: ""
   });
 
   const [activeTeam, setActiveTeam] = useState(activePerson.team);
 
-  const title = "Workers Meeting - Gbagada";
+  const title = "Leaders Meeting - Gbagada";
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
@@ -95,6 +96,7 @@ const Attendance = () => {
             fullname: "",
             email: "",
             workerrole: "",
+            campus: "",
           });
           setManuallySaving(false);
           setIsCreating(false);
@@ -109,6 +111,7 @@ const Attendance = () => {
             fullname: "",
             email: "",
             workerrole: "",
+            campus: "",
           });
           setManuallySaving(false);
           setIsCreating(false);
@@ -150,6 +153,7 @@ const Attendance = () => {
             fullname: "",
             email: "",
             workerrole: "",
+            campus: "",
           });
           setIsEditSaving(false);
           setIsEditing(false);
@@ -244,6 +248,9 @@ const Attendance = () => {
                     <div className="flex flex-col">
                       <span>
                         {person.firstname} {person.lastname}
+                      </span>
+                      <span>
+                        {person.campus}
                       </span>
                       {person.workerrole && (
                         <span className="opacity-60">{person.workerrole}</span>
