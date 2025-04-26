@@ -93,6 +93,7 @@ export const leaderTeams = [
 ];
 
 export const workerrolesoptions = [
+  { label: "All Roles", value: "All" },
   { label: "Assistant HOD", value: "Assistant HOD" },
   { label: "Campus Admin", value: "Campus Admin" },
   { label: "Campus Pastors", value: "Campus Pastors" },
@@ -106,6 +107,7 @@ export const workerrolesoptions = [
 ]
 
 export const campusoptions = [
+  { label: "All Campuses", value: "All" },
   { label: "Abeokuta", value: "Abeokuta" },
   { label: "Akobo", value: "Akobo" },
   { label: "Apapa", value: "Apapa" },

@@ -69,6 +69,19 @@ const AttendanceV2 = () => {
   };
 
   const handleSave = () => {
+    if (!newPerson.team || newPerson.team === "All") {
+      toast.error("Team is missing");
+      return;
+    }
+    if (!newPerson.campus || newPerson.campus === "All") {
+      toast.error("Campus is missing");
+      return;
+    }
+    if (!newPerson.phonenumber) {
+      toast.error("Phone number is missing");
+      return;
+    }
+
     const isPresentKey = "ispresent";
     setManuallySaving(true);
     manualAttendanceMutation(
@@ -113,8 +126,13 @@ const AttendanceV2 = () => {
   };
 
   const handleUpdate = () => {
-    if (!activePerson.team) {
+    if (!activePerson.team || activePerson.team === "All") {
       toast.error("Team is missing");
+      return;
+    }
+
+    if (!activePerson.campus || activePerson.campus === "All") {
+      toast.error("Campus is missing");
       return;
     }
 
