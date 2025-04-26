@@ -401,7 +401,7 @@ const AttendanceV2 = () => {
           {isEditing && (
             <div className="mt-1">
               <h2 className="text-xl font-bold mb-4 text-center">
-                Update worker info
+                Confirm leader info
               </h2>
               <div className="space-y-4">
                 <input
@@ -425,18 +425,6 @@ const AttendanceV2 = () => {
                     setActivePerson({
                       ...activePerson,
                       lastname: capitalize(e.target.value),
-                    })
-                  }
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="w-full p-2 border rounded-lg"
-                  value={activePerson.email}
-                  onChange={(e) =>
-                    setActivePerson({
-                      ...activePerson,
-                      email: e.target.value,
                     })
                   }
                 />
