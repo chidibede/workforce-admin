@@ -10,7 +10,7 @@ import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { capitalize } from "lodash";
-import { leaderTeams, workerrolesoptions } from "../utils/teams";
+import { campusoptions, leaderTeams, workerrolesoptions } from "../utils/teams";
 import Select from "./Dropdown";
 
 const AttendanceV2 = () => {
@@ -336,18 +336,6 @@ const AttendanceV2 = () => {
                   }
                 />
                 <input
-                  type="email"
-                  placeholder="Email"
-                  className="w-full p-2 border rounded-lg"
-                  value={newPerson.email}
-                  onChange={(e) =>
-                    setNewPerson({
-                      ...newPerson,
-                      email: e.target.value,
-                    })
-                  }
-                />
-                <input
                   type="text"
                   placeholder="Phone Number"
                   className="w-full p-2 border rounded-lg"
@@ -375,6 +363,18 @@ const AttendanceV2 = () => {
                       setNewPerson({
                         ...newPerson,
                         workerrole: value,
+                      });
+                    }}
+                    className="mb-3"
+                  />
+                </div>
+                <div>
+                  <Select
+                    options={campusoptions}
+                    onChange={(value) => {
+                      setNewPerson({
+                        ...newPerson,
+                        campus: value,
                       });
                     }}
                     className="mb-3"
@@ -473,6 +473,19 @@ const AttendanceV2 = () => {
                       setActivePerson({
                         ...activePerson,
                         workerrole: value,
+                      });
+                    }}
+                    className="mb-3"
+                  />
+                </div>
+                <div>
+                  <Select
+                    options={campusoptions}
+                    defaultValue={activePerson.campus}
+                    onChange={(value) => {
+                      setActivePerson({
+                        ...activePerson,
+                        campus: value,
                       });
                     }}
                     className="mb-3"

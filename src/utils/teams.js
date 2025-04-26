@@ -105,6 +105,22 @@ export const workerrolesoptions = [
   { label: "Zonal Leader", value: "Zonal Leader" }
 ]
 
+export const campusoptions = [
+  { label: "Abeokuta", value: "Abeokuta" },
+  { label: "Akobo", value: "Akobo" },
+  { label: "Apapa", value: "Apapa" },
+  { label: "Arepo", value: "Arepo" },
+  { label: "Gbagada", value: "Gbagada" },
+  { label: "Ibadan / Jerico", value: "Ibadan / Jerico" },
+  { label: "Ikorodu", value: "Ikorodu" },
+  { label: "Ilupeju", value: "Ilupeju" },
+  { label: "Magodo", value: "Magodo" },
+  { label: "Portharcourt", value: "Portharcourt" },
+  { label: "Surulere", value: "Surulere" },
+  { label: "Yaba", value: "Yaba" }
+]
+
+
 
 export const departmentsWithTeams = {
   Ministry: [
