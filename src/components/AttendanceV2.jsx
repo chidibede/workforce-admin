@@ -136,7 +136,7 @@ const AttendanceV2 = () => {
       return;
     }
 
-    if (!activePerson.firstname || !activePerson.phonenumber) {
+    if (!activePerson.phonenumber) {
       toast.error("Name or phone number is missing");
       return;
     }
