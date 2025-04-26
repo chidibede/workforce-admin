@@ -10,10 +10,10 @@ import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { capitalize } from "lodash";
-import { departmentsWithTeams, teams, teamsSummary } from "../utils/teams";
+import { leaderTeams, workerrolesoptions } from "../utils/teams";
 import Select from "./Dropdown";
 
-const Attendance = () => {
+const AttendanceV2 = () => {
   const { debouncedSearch, search: searchValue } = useDebouncedSearch();
   const { data: filteredPeople, isLoading } = useSearchWorker(searchValue);
   const { mutate: markAttendanceMutation } = useAttendance();
@@ -30,25 +30,22 @@ const Attendance = () => {
     firstname: "",
     lastname: "",
     phonenumber: "",
-    department: "",
     team: "",
     fullname: "",
-    email: "",
+    workerrole: "",
+    campus: "",
   });
 
   const [activePerson, setActivePerson] = useState({
     firstname: "",
     lastname: "",
     phonenumber: "",
-    department: "",
     team: "",
     fullname: "",
-    email: "",
+    workerrole: "",
+    campus: "",
   });
-
-  const [activeTeam, setActiveTeam] = useState(activePerson.team);
-
-  const title = "Leaders Meeting - Gbagada";
+  const title = "Group Alpha Leaders Meeting - April 2025";
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
@@ -69,7 +66,6 @@ const Attendance = () => {
 
   const resetEdit = () => {
     setIsEditing(false);
-    setActiveTeam("");
   };
 
   const handleSave = () => {
@@ -90,10 +86,9 @@ const Attendance = () => {
             firstname: "",
             lastname: "",
             phonenumber: "",
-            department: "",
             team: "",
             fullname: "",
-            email: "",
+            campus: "",
             workerrole: "",
           });
           setManuallySaving(false);
@@ -104,10 +99,9 @@ const Attendance = () => {
             firstname: "",
             lastname: "",
             phonenumber: "",
-            department: "",
             team: "",
             fullname: "",
-            email: "",
+            campus: "",
             workerrole: "",
           });
           setManuallySaving(false);
@@ -119,8 +113,8 @@ const Attendance = () => {
   };
 
   const handleUpdate = () => {
-    if (!activePerson.team || !activePerson.department) {
-      toast.error("Team or department is missing");
+    if (!activePerson.team) {
+      toast.error("Team is missing");
       return;
     }
 
@@ -145,10 +139,9 @@ const Attendance = () => {
             firstname: "",
             lastname: "",
             phonenumber: "",
-            department: "",
             team: "",
             fullname: "",
-            email: "",
+            campus: "",
             workerrole: "",
           });
           setIsEditSaving(false);
@@ -182,24 +175,6 @@ const Attendance = () => {
     // Implement edit functionality
     setIsEditing(true);
     setActivePerson(person);
-  };
-
-  const getDepartment = () => {
-    const departments = departmentsWithTeams[activeTeam || activePerson.team];
-    const options = departments
-      ? departments.map((department) => ({
-          label: department,
-          values: department,
-        }))
-      : [];
-
-    const finalOptions = [
-      {
-        label: "Choose department",
-        values: null,
-      },
-    ].concat(options);
-    return finalOptions;
   };
 
   return (
@@ -245,16 +220,18 @@ const Attendance = () => {
                       <span>
                         {person.firstname} {person.lastname}
                       </span>
+                      <span>
+                        {person.campus}
+                      </span>
                       {person.workerrole && (
                         <span className="opacity-60">{person.workerrole}</span>
                       )}
                       {person.team ? (
                         <span className="opacity-50">
-                          {person?.team} -{" "}
-                          {person?.department && person?.department}
+                          {person?.team}
                         </span>
                       ) : (
-                        <span>{person.team || person.department}</span>
+                        <span>{person.team}</span>
                       )}
                     </div>
                     {person.ispresent ? (
@@ -379,64 +356,30 @@ const Attendance = () => {
                     setNewPerson({ ...newPerson, phonenumber: e.target.value })
                   }
                 />
-                {/* <Select
-                  label="Select team"
-                  options={teams}
-                  value={newPerson.team}
-                  onChange={(value) =>
-                    setNewPerson({
-                      ...newPerson,
-                      team: capitalize(value),
-                    })
-                  }
-                />
-                <input
-                  type="text"
-                  placeholder="Department eg Career and Finance"
-                  className="w-full p-2 border rounded-lg"
-                  value={newPerson.department}
-                  onChange={(e) =>
-                    setNewPerson({
-                      ...newPerson,
-                      department: capitalize(e.target.value),
-                    })
-                  }
-                /> */}
                 <div>
                   <Select
-                    options={teamsSummary}
+                    options={leaderTeams}
                     onChange={(value) => {
-                      setActiveTeam(value);
                       setNewPerson({
                         ...newPerson,
-                        team: capitalize(value),
+                        team: value,
                       });
                     }}
                     className="mb-3"
                   />
+                </div>
+                <div>
                   <Select
-                    options={getDepartment() || []}
-                    onChange={(value) =>
+                    options={workerrolesoptions}
+                    onChange={(value) => {
                       setNewPerson({
                         ...newPerson,
-                        department: capitalize(value),
-                      })
-                    }
+                        workerrole: value,
+                      });
+                    }}
                     className="mb-3"
                   />
                 </div>
-                {/* <input
-                  type="text"
-                  placeholder="Role"
-                  className="w-full p-2 border rounded-lg"
-                  value={activePerson.workerrole}
-                  onChange={(e) =>
-                    setActivePerson({
-                      ...activePerson,
-                      workerrole: e.target.value,
-                    })
-                  }
-                /> */}
                 <div className="flex space-x-2">
                   <button
                     onClick={resetCreate}
@@ -509,66 +452,32 @@ const Attendance = () => {
                     })
                   }
                 />
-                {/* <Select
-                  label="Select team"
-                  options={teams}
-                  value={activePerson.team}
-                  onChange={(value) =>
-                    setActivePerson({
-                      ...activePerson,
-                      team: capitalize(value),
-                    })
-                  }
-                />
-                <input
-                  type="text"
-                  placeholder="Department eg Career and Finance"
-                  className="w-full p-2 border rounded-lg"
-                  value={activePerson.department}
-                  onChange={(e) =>
-                    setActivePerson({
-                      ...activePerson,
-                      department: capitalize(e.target.value),
-                    })
-                  }
-                /> */}
                 <div>
                   <Select
-                    options={teamsSummary}
+                    options={leaderTeams}
                     defaultValue={activePerson.team}
                     onChange={(value) => {
-                      setActiveTeam(value);
                       setActivePerson({
                         ...activePerson,
-                        team: capitalize(value),
+                        team: value,
                       });
                     }}
                     className="mb-3"
                   />
+                </div>
+                <div>
                   <Select
-                    options={getDepartment() || []}
-                    defaultValue={activePerson.department}
-                    onChange={(value) =>
+                    options={workerrolesoptions}
+                    defaultValue={activePerson.workerrole}
+                    onChange={(value) => {
                       setActivePerson({
                         ...activePerson,
-                        department: capitalize(value),
-                      })
-                    }
+                        workerrole: value,
+                      });
+                    }}
                     className="mb-3"
                   />
                 </div>
-                {/* <input
-                  type="text"
-                  placeholder="Role"
-                  className="w-full p-2 border rounded-lg"
-                  value={activePerson.workerrole}
-                  onChange={(e) =>
-                    setActivePerson({
-                      ...activePerson,
-                      workerrole: e.target.value,
-                    })
-                  }
-                /> */}
                 <div className="flex space-x-2">
                   <button
                     onClick={resetEdit}
@@ -592,4 +501,4 @@ const Attendance = () => {
   );
 };
 
-export default Attendance;
+export default AttendanceV2;

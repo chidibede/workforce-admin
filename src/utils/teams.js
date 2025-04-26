@@ -76,6 +76,35 @@ export const teamsSummary = [
   },
   { label: "Directional Leaders", value: "Directional Leader" },
 ];
+export const leaderTeams = [
+  {
+    label: "All Teams",
+    value: "All",
+  },
+  { label: "Districts", value: "Districts" },
+  { label: "General Service", value: "General Service" },
+  { label: "Interactive Groups", value: "Interactive Groups" },
+  { label: "Maturity", value: "Maturity" },
+  { label: "Membership", value: "Membership" },
+  { label: "Ministry", value: "Ministry" },
+  { label: "Mission", value: "Mission" },
+  { label: "Next Gen", value: "Next Gen" },
+  { label: "Programs", value: "Programs" },
+];
+
+export const workerrolesoptions = [
+  { label: "Assistant HOD", value: "Assistant HOD" },
+  { label: "Campus Admin", value: "Campus Admin" },
+  { label: "Campus Pastors", value: "Campus Pastors" },
+  { label: "Community Leader", value: "Community Leader" },
+  { label: "Directional Leader", value: "Directional Leader" },
+  { label: "HOD", value: "HOD" },
+  { label: "Pastoral Leader/Team Head", value: "Pastoral Leader/Team Head" },
+  { label: "Small Group Leader/Cell leader", value: "Small Group Leader/Cell leader" },
+  { label: "Sub Team Head", value: "Sub Team Head" },
+  { label: "Zonal Leader", value: "Zonal Leader" }
+]
+
 
 export const departmentsWithTeams = {
   Ministry: [
@@ -94,7 +123,7 @@ export const departmentsWithTeams = {
     "Prison Ministry",
     "Kids Support",
     "House of Dorcas",
-    "Legal Aid"
+    "Legal Aid",
   ],
   Membership: [
     "Benevolence",
@@ -107,17 +136,13 @@ export const departmentsWithTeams = {
     "Info Hub",
     "Interactors",
     "New Convert",
-    "Weddings"
+    "Weddings",
   ],
-  "General Service": [
-    "Admin and Facility",
-    "Communications (DMU)",
-    "Finance"
-  ],
+  "General Service": ["Admin and Facility", "Communications (DMU)", "Finance"],
   "Interactive Groups": [
     "Singles Ministry",
     "Women of Wisdom",
-    "Men of Harvest"
+    "Men of Harvest",
   ],
   Maturity: [
     "Discipleship Event",
@@ -125,7 +150,7 @@ export const departmentsWithTeams = {
     "Testimony Capture",
     "Courses HSDC",
     "Content Development (Resources)",
-    "Prayer and Bible Study"
+    "Prayer and Bible Study",
   ],
   Missions: [
     "Evangelism",
@@ -133,7 +158,7 @@ export const departmentsWithTeams = {
     "HSAP",
     "Invest and Invite",
     "NLP",
-    "Publicity"
+    "Publicity",
   ],
   Districts: [
     "Royal Priesthoods Community",
@@ -147,7 +172,7 @@ export const departmentsWithTeams = {
     "Gbagada Estate Community",
     "Anagkazo Community",
     "Sunrise Community",
-    "Trailblazer"
+    "Trailblazer",
   ],
   Programs: [
     "Exalted Tribe",
@@ -185,12 +210,9 @@ export const departmentsWithTeams = {
     "Ushering - Tosin",
     "Ushering - Kofoworola",
     "Venue Management",
-    "Programs Admin Team"
+    "Programs Admin Team",
   ],
-  Mission: [
-    "Sub team-Missions",
-    "Target Missions"
-  ],
+  Mission: ["Sub team-Missions", "Target Missions"],
   "Next Gen": [
     "Reach and Partnership - Stirhouse",
     "Learning and Development - Stirhouse",
@@ -200,16 +222,11 @@ export const departmentsWithTeams = {
     "New Workers - Kidszone",
     "Administration - Kidszone",
     "Programming and Environment - Kidszone",
-    "Learning and Development - Kidszone"
+    "Learning and Development - Kidszone",
   ],
-  "Pastoral Leaders": [
-    "Pastoral Leaders"
-  ],
-  "Directional Leader": [
-    "Directional Leader"
-  ]
+  "Pastoral Leaders": ["Pastoral Leaders"],
+  "Directional Leader": ["Directional Leader"],
 };
-
 
 // const depts = [
 //   { department: "All" },
