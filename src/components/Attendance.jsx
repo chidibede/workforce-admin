@@ -72,6 +72,10 @@ const Attendance = () => {
     setActiveTeam("");
   };
 
+  useEffect(() => {
+    setActiveTeam(activePerson.team)
+  }, [activePerson.team]);
+
   const handleSave = () => {
     const isPresentKey = "ispresent";
     setManuallySaving(true);
