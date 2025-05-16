@@ -48,7 +48,7 @@ const Attendance = () => {
 
   const [activeTeam, setActiveTeam] = useState(activePerson.team);
 
-  const title = "Leaders Meeting - Gbagada";
+  const title = "Workers Meeting - Gbagada";
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
