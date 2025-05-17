@@ -127,7 +127,7 @@ export const campusoptions = [
 export const departmentsWithTeams = {
   Ministry: [
     "Workforce Admin",
-    "Ministry team leadership",
+    "Ministry Team leadership",
     "Leadership Effectiveness",
     "Leadership Recruitment",
     "Leadership Training",
@@ -200,10 +200,11 @@ export const departmentsWithTeams = {
     "Diamond ET",
     "Emerald ET",
     "Pearl ET",
-    "Greeters 1st team",
-    "Greeters 2nd team",
-    "Greeters 3rd team",
-    "Greeters 4th team",
+    "Greeters",
+    // "Greeters 1st team",
+    // "Greeters 2nd team",
+    // "Greeters 3rd team",
+    // "Greeters 4th team",
     "Harvesters Intelligence Unit",
     "Media-Administration",
     "Media-Experience",
@@ -222,11 +223,12 @@ export const departmentsWithTeams = {
     "Quality Assurance",
     "Unveil",
     "Traffic",
-    "Ushering - Bimpe",
-    "Ushering - Queen",
-    "Ushering - Iyaanu",
-    "Ushering - Tosin",
-    "Ushering - Kofoworola",
+    // "Ushering - Bimpe",
+    // "Ushering - Queen",
+    // "Ushering - Iyaanu",
+    // "Ushering - Tosin",
+    // "Ushering - Kofoworola",
+    "Ushering",
     "Venue Management",
     "Programs Admin Team",
   ],
@@ -245,6 +247,15 @@ export const departmentsWithTeams = {
   "Pastoral Leaders": ["Pastoral Leaders"],
   "Directional Leader": ["Directional Leader"],
 };
+
+export function capitalizeWords(str) {
+  return str
+    .split(' ')
+    .map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    )
+    .join(' ');
+}
 
 // const depts = [
 //   { department: "All" },

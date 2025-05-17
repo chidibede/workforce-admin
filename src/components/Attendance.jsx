@@ -10,7 +10,7 @@ import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { capitalize } from "lodash";
-import { departmentsWithTeams, teams, teamsSummary } from "../utils/teams";
+import { capitalizeWords, departmentsWithTeams, teams, teamsSummary } from "../utils/teams";
 import Select from "./Dropdown";
 
 const Attendance = () => {
@@ -187,7 +187,6 @@ const Attendance = () => {
     setIsEditing(true);
     setActivePerson(person);
   };
-  console.log("activePerson", activePerson);
 
   const getDepartment = () => {
     const departments = departmentsWithTeams[activeTeam || activePerson.team];
@@ -414,7 +413,7 @@ const Attendance = () => {
                       setActiveTeam(value);
                       setNewPerson({
                         ...newPerson,
-                        team: capitalize(value),
+                        team: capitalizeWords(value),
                       });
                     }}
                     className="mb-3"
@@ -424,7 +423,7 @@ const Attendance = () => {
                     onChange={(value) =>
                       setNewPerson({
                         ...newPerson,
-                        department: capitalize(value),
+                        department: capitalizeWords(value),
                       })
                     }
                     className="mb-3"
@@ -545,7 +544,7 @@ const Attendance = () => {
                       setActiveTeam(value);
                       setActivePerson({
                         ...activePerson,
-                        team: capitalize(value),
+                        team: capitalizeWords(value),
                       });
                     }}
                     className="mb-3"
@@ -556,7 +555,7 @@ const Attendance = () => {
                     onChange={(value) =>
                       setActivePerson({
                         ...activePerson,
-                        department: capitalize(value),
+                        department: capitalizeWords(value),
                       })
                     }
                     className="mb-3"
