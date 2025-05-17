@@ -33,7 +33,7 @@ const Attendance = () => {
     department: "",
     team: "",
     fullname: "",
-    email: "",
+    // email: "",
   });
 
   const [activePerson, setActivePerson] = useState({
@@ -43,7 +43,7 @@ const Attendance = () => {
     department: "",
     team: "",
     fullname: "",
-    email: "",
+    // email: "",
   });
 
   const [activeTeam, setActiveTeam] = useState(activePerson.team);
@@ -97,7 +97,7 @@ const Attendance = () => {
             department: "",
             team: "",
             fullname: "",
-            email: "",
+            // email: "",
             workerrole: "",
           });
           setManuallySaving(false);
@@ -111,7 +111,7 @@ const Attendance = () => {
             department: "",
             team: "",
             fullname: "",
-            email: "",
+            // email: "",
             workerrole: "",
           });
           setManuallySaving(false);
@@ -152,7 +152,7 @@ const Attendance = () => {
             department: "",
             team: "",
             fullname: "",
-            email: "",
+            // email: "",
             workerrole: "",
           });
           setIsEditSaving(false);
@@ -187,6 +187,7 @@ const Attendance = () => {
     setIsEditing(true);
     setActivePerson(person);
   };
+  console.log("activePerson", activePerson);
 
   const getDepartment = () => {
     const departments = departmentsWithTeams[activeTeam || activePerson.team];
@@ -362,7 +363,7 @@ const Attendance = () => {
                     })
                   }
                 />
-                <input
+                {/* <input
                   type="email"
                   placeholder="Email"
                   className="w-full p-2 border rounded-lg"
@@ -373,7 +374,7 @@ const Attendance = () => {
                       email: e.target.value,
                     })
                   }
-                />
+                /> */}
                 <input
                   type="text"
                   placeholder="Phone Number"
@@ -489,7 +490,7 @@ const Attendance = () => {
                     })
                   }
                 />
-                <input
+                {/* <input
                   type="email"
                   placeholder="Email"
                   className="w-full p-2 border rounded-lg"
@@ -500,7 +501,7 @@ const Attendance = () => {
                       email: e.target.value,
                     })
                   }
-                />
+                /> */}
                 <input
                   type="text"
                   placeholder="Phone Number"
