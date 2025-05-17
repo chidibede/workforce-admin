@@ -77,6 +77,11 @@ const Attendance = () => {
   }, [activePerson.team]);
 
   const handleSave = () => {
+    if (!newPerson.firstname || !newPerson.lastname) {
+      toast.error("First name or last name is missing");
+      return;
+    }
+    
     if (!newPerson.phonenumber) {
       toast.error("Phone number is missing");
       return;
@@ -136,6 +141,11 @@ const Attendance = () => {
   };
 
   const handleUpdate = () => {
+    if(!activePerson.firstname || !activePerson.lastname) {
+      toast.error("First name or last name is missing");
+      return;
+    }
+
     if (!activePerson.team || !activePerson.department) {
       toast.error("Team or department is missing");
       return;
