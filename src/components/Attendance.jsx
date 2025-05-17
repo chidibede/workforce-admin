@@ -77,6 +77,19 @@ const Attendance = () => {
   }, [activePerson.team]);
 
   const handleSave = () => {
+    if (!newPerson.team || newPerson.team === "All") {
+      toast.error("Team is missing");
+      return;
+    }
+    if (!newPerson.department || newPerson.department === "All") {
+      toast.error("Department is missing");
+      return;
+    }
+    if (!newPerson.phonenumber) {
+      toast.error("Phone number is missing");
+      return;
+    }
+
     const isPresentKey = "ispresent";
     setManuallySaving(true);
     manualAttendanceMutation(
