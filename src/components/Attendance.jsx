@@ -81,7 +81,7 @@ const Attendance = () => {
       toast.error("First name or last name is missing");
       return;
     }
-    
+
     if (!newPerson.phonenumber) {
       toast.error("Phone number is missing");
       return;
@@ -146,13 +146,17 @@ const Attendance = () => {
       return;
     }
 
-    if (!activePerson.team || !activePerson.department) {
-      toast.error("Team or department is missing");
+    if (!activePerson.phonenumber) {
+      toast.error("Phone number is missing");
       return;
     }
 
-    if (!activePerson.firstname || !activePerson.phonenumber) {
-      toast.error("Name or phone number is missing");
+    if (!activePerson.team || activePerson.team === "All") {
+      toast.error("Team is missing");
+      return;
+    }
+    if (!activePerson.department || activePerson.department === "All") {
+      toast.error("Department is missing");
       return;
     }
     const isPresentKey = "ispresent";
